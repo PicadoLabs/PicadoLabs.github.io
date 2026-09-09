@@ -1,0 +1,22 @@
+# Operating System & Environment
+.DS_Store
+Thumbs.db
+*.tmp
+.env
+.env.local
+.env.*
+
+# Editor & IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build, Dependency & Cache Directories
+node_modules/
+__pycache__/
+*.pyc
+.cache/
+dist/
+build/
+
