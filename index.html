@@ -53,7 +53,7 @@
       <div class="wrap">
         <div class="hero__grid">
           <div class="hero__col">
-            <p class="eyebrow">IDEAS / AGENTS / IMPACT &bull; 100% Local-First &bull; Verify-First Engineering</p>
+            <p class="eyebrow">IDEAS / AGENTS / IMPACT</p>
             <h1 class="hero__title">Cooking up tools for building, testing &amp; routing <span class="u">AI agents</span>.</h1>
             <p class="hero__lede">
               Picado Labs brings together three open-source engineering systems:
@@ -70,191 +70,204 @@
           </div><!-- /hero__col -->
 
           <div class="hero__media">
-            <!-- ARCHITECTURAL COMPARISON & BENCHMARK MATRIX -->
-            <div class="matrix-card" data-tabs>
-              <div class="matrix-header">
+            <!-- LIVE ENGINEERING STUDIO — 3 Interactive Subsystems -->
+            <div class="matrix-card studio-card" data-tabs>
+              <!-- Window Chrome Header -->
+              <div class="matrix-header studio-header">
                 <div class="matrix-title-wrap">
-                  <span class="matrix-pill">ARCHITECTURAL COMPARISON MATRIX</span>
-                  <span class="matrix-tag-dim">Verified Specifications</span>
+                  <div class="studio-chrome-left">
+                    <div class="studio-mac-dots" aria-hidden="true">
+                      <span class="mac-dot mac-dot--red"></span>
+                      <span class="mac-dot mac-dot--amber"></span>
+                      <span class="mac-dot mac-dot--green"></span>
+                    </div>
+                    <span class="matrix-pill">LIVE ENGINEERING STUDIO</span>
+                  </div>
+                  <div class="studio-status-pill" id="simStatusPill">
+                    <span class="studio-status-dot"></span>
+                    <span id="simStatusText">IDLE</span>
+                  </div>
                 </div>
 
-                <div class="matrix-tabs">
-                  <button class="matrix-tab is-active" data-tab="matrix-verify">Verification</button>
-                  <button class="matrix-tab" data-tab="matrix-speed">Routing Speed</button>
-                  <button class="matrix-tab" data-tab="matrix-cost">Inference Cost</button>
-                  <button class="matrix-tab" data-tab="matrix-eval">SWE Benchmarks</button>
+                <div class="matrix-tabs" role="tablist" aria-label="Engineering Subsystems">
+                  <button class="matrix-tab is-active" data-tab="studio-terminal" role="tab" aria-selected="true">
+                    <span class="tab-indicator"></span>Terminal Agent
+                  </button>
+                  <button class="matrix-tab" data-tab="studio-router" role="tab" aria-selected="false">
+                    <span class="tab-indicator"></span>Model Router
+                  </button>
+                  <button class="matrix-tab" data-tab="studio-bench" role="tab" aria-selected="false">
+                    <span class="tab-indicator"></span>AgentBench
+                  </button>
                 </div>
               </div>
 
               <div class="matrix-panels hero-panels">
-                <!-- Panel 1: Verification -->
-                <div class="matrix-panel" id="matrix-verify">
-                  <div class="arch-compare-list">
-                    <!-- Picado Labs -->
-                    <div class="arch-item arch-item--winner">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Picado Labs Suite (Terminal Agent)</div>
-                        <span class="arch-badge arch-badge--green">Independent Verifier</span>
-                      </div>
-                      <div class="arch-item__mechanism">External Test Harness Execution in Sandbox</div>
-                      <p class="arch-item__desc"><code>IndependentVerifier</code> runs unit tests (<code>pytest</code> / <code>node --test</code>) in an isolated process sandbox. Demands 0 failures before marking a task <code>VERIFIED</code>.</p>
-                      <div class="arch-item__tags">
-                        <span>psutil process-tree kill</span>
-                        <span>12-category failure recovery</span>
-                        <span>Zero self-report</span>
-                      </div>
-                    </div>
 
-                    <!-- Standard Assistants -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Standard Coding Assistants</div>
-                        <span class="arch-badge">User-Prompted Reflection</span>
-                      </div>
-                      <div class="arch-item__mechanism">Manual Developer Review</div>
-                      <p class="arch-item__desc">Outputs proposed code directly into chat or editor; relies on human developers to manually run test suites, inspect traces, and guide subsequent iterations.</p>
+                <!-- TAB 1: Terminal Agent Sandbox -->
+                <div class="matrix-panel" id="studio-terminal" role="tabpanel">
+                  <div class="studio-toolbar">
+                    <div class="studio-btn-group">
+                      <button class="btn btn--sm btn--solid studio-btn--run" id="btnRunSim" aria-label="Run automated simulation">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Run
+                      </button>
+                      <button class="btn btn--sm btn--ghost studio-btn--step" id="btnStepSim" aria-label="Step one execution line">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg> Step
+                      </button>
+                      <button class="btn btn--sm btn--ghost studio-btn--reset" id="btnResetSim" aria-label="Reset simulation">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg> Reset
+                      </button>
                     </div>
+                    <div class="studio-meta-badge">
+                      <span class="studio-badge-label">LOOP:</span>
+                      <span class="studio-badge-val">psutil Process-Tree Isolation</span>
+                    </div>
+                  </div>
 
-                    <!-- Generic AI Wrappers -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Generic AI Chatbots &amp; Wrappers</div>
-                        <span class="arch-badge arch-badge--warn">LLM Self-Report</span>
+                  <div class="studio-terminal" id="simTermScreen">
+                    <div class="terminal-titlebar">
+                      <div class="term-titlebar-left">
+                        <span class="term-titlebar-dot"></span>
+                        <span class="term-titlebar-text">sandbox: task_042_fix_async_deadlock.py</span>
                       </div>
-                      <div class="arch-item__mechanism">Unverified Text Assertion</div>
-                      <p class="arch-item__desc">Considers tasks complete based purely on language model text generation ("I have implemented the fix") without executing code or sandboxing processes.</p>
+                      <span class="term-titlebar-badge">ISOLATED PID: 38291</span>
+                    </div>
+                    <div class="terminal-body">
+                      <div class="studio-term-line" id="simLine1"><span class="t-prompt">$</span> <span class="t-cmd">terminal-agent run task_042_fix_async_deadlock.json</span></div>
+                      <div class="studio-term-line is-hidden" id="simLine2"><span class="term-badge term-badge--agent">AGENT</span> Spawning isolated psutil process sandbox... PID 38291</div>
+                      <div class="studio-term-line is-hidden" id="simLine3"><span class="term-badge term-badge--exec">EXEC</span> pytest tests/ -x --tb=short — 12 tests collected</div>
+                      <div class="studio-term-line is-hidden" id="simLine4"><span class="term-badge term-badge--recover">RECOVER</span> Failure Cat-7: Threading race condition — applying fix strategy...</div>
+                      <div class="studio-term-line is-hidden" id="simLine5"><span class="term-badge term-badge--exec">EXEC</span> pytest tests/ -x — 12 passed in 0.84s</div>
+                      <div class="studio-term-line is-hidden" id="simLine6"><span class="term-badge term-badge--verified">VERIFIED</span> Task 042 — IndependentVerifier: 0 failures. Status: COMPLETE</div>
+                      <span class="term-cursor" id="simCursor">_</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Panel 2: Speed & Latency -->
-                <div class="matrix-panel is-hidden" id="matrix-speed">
-                  <div class="arch-compare-list">
-                    <!-- Picado Labs -->
-                    <div class="arch-item arch-item--winner">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Picado Labs (Model Router)</div>
-                        <span class="arch-badge arch-badge--green">&lt;3ms Deterministic</span>
+                <!-- TAB 2: Model Router Playground -->
+                <div class="matrix-panel is-hidden" id="studio-router" role="tabpanel">
+                  <div class="studio-chips-wrap">
+                    <span class="studio-chips-label">Presets:</span>
+                    <div class="studio-chips">
+                      <button class="sim-chip is-active" data-query="debug async deadlock">debug deadlock</button>
+                      <button class="sim-chip" data-query="extract JSON schema">parse JSON</button>
+                      <button class="sim-chip" data-query="write a Python function">write code</button>
+                      <button class="sim-chip" data-query="prove math theorem">math proof</button>
+                    </div>
+                  </div>
+
+                  <div class="studio-router-input-box">
+                    <span class="input-prompt-sym" aria-hidden="true">&gt;</span>
+                    <input id="heroRouterQuery" type="text" value="debug async deadlock" placeholder="Enter task (e.g. solve memory leak, parse schema...)" class="studio-input" />
+                    <button class="btn btn--sm btn--solid studio-route-btn" id="btnRunRouter">
+                      Route Query
+                    </button>
+                  </div>
+
+                  <div class="studio-router-card" id="heroRouterResult">
+                    <div class="router-card-header">
+                      <div class="router-model-group">
+                        <span class="router-target-label">DISPATCH TARGET</span>
+                        <span class="router-model-name" id="heroRouterModel">ollama-deepseek-r1:1.5b</span>
                       </div>
-                      <div class="arch-item__mechanism">Regex Feature Extraction + Pareto Scoring</div>
-                      <p class="arch-item__desc">Inspects requests via deterministic heuristics in &lt;2.5ms and computes normalized in-memory Pareto matrix scores across Quality, Cost, Speed, and Reliability in &lt;0.5ms.</p>
-                      <div class="arch-item__tags">
-                        <span>&lt;3ms total dispatch</span>
-                        <span>Hard constraint pruner</span>
-                        <span>80%/95%/100% budget guards</span>
+                      <span class="router-engine-badge" id="heroRouterEngine">LOCAL OLLAMA ($0.00)</span>
+                    </div>
+
+                    <div class="router-metrics-grid">
+                      <div class="router-metric-item">
+                        <span class="router-metric-k">CLASSIFICATION</span>
+                        <span class="router-metric-v" id="heroRouterType">DEBUGGING</span>
+                      </div>
+                      <div class="router-metric-item">
+                        <span class="router-metric-k">ROUTING LATENCY</span>
+                        <span class="router-metric-v router-metric-v--green" id="heroRouterTime">&lt;1.8ms</span>
+                      </div>
+                      <div class="router-metric-item">
+                        <span class="router-metric-k">INFERENCE COST</span>
+                        <span class="router-metric-v router-metric-v--green" id="heroRouterCost">$0.00 (Local)</span>
                       </div>
                     </div>
 
-                    <!-- Cloud LLM Proxy Routers -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Cloud LLM Proxy Routers</div>
-                        <span class="arch-badge">200ms – 800ms Latency</span>
-                      </div>
-                      <div class="arch-item__mechanism">Secondary LLM Call Overhead</div>
-                      <p class="arch-item__desc">Dispatches an additional LLM prompt over the internet to classify intent before calling target models, adding network roundtrips and recursive token costs.</p>
-                    </div>
-
-                    <!-- Manual Dropdown Selection -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Manual / Static Selection</div>
-                        <span class="arch-badge arch-badge--warn">No Automation</span>
-                      </div>
-                      <div class="arch-item__mechanism">Hardcoded Over-Provisioning</div>
-                      <p class="arch-item__desc">Routes all requests to expensive frontier models regardless of task complexity or forces developers to manually toggle model dropdowns.</p>
+                    <div class="router-reasoning-box">
+                      <span class="router-reasoning-head">EXPLAINABILITY ENGINE</span>
+                      <p class="router-reasoning-text" id="heroRouterReason">Concurrency analysis &amp; stack trace diagnosis require deep reasoning chains. Dispatched to DeepSeek R1 reasoning engine at zero API cost.</p>
                     </div>
                   </div>
                 </div>
 
-                <!-- Panel 3: Cost -->
-                <div class="matrix-panel is-hidden" id="matrix-cost">
-                  <div class="arch-compare-list">
-                    <!-- Picado Labs -->
-                    <div class="arch-item arch-item--winner">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Picado Labs Local-First Engine</div>
-                        <span class="arch-badge arch-badge--green">$0.00 Local Inference</span>
+                <!-- TAB 3: AgentBench Scoring -->
+                <div class="matrix-panel is-hidden" id="studio-bench" role="tabpanel">
+                  <div class="studio-bench-grid">
+                    <div class="studio-bench-sliders">
+                      <div class="bench-slider-control">
+                        <div class="studio-slide-row">
+                          <span class="slide-name">Correctness <span class="slide-formula-w">(w = 0.50)</span></span>
+                          <span class="studio-slide-val" id="benchValC">95%</span>
+                        </div>
+                        <input type="range" id="benchSlideC" min="0" max="100" value="95" aria-label="Correctness percentage" />
                       </div>
-                      <div class="arch-item__mechanism">Native Ollama (Qwen 2.5 Coder &amp; DeepSeek R1)</div>
-                      <p class="arch-item__desc">Runs locally at zero API token cost on consumer hardware. Includes in-memory Mock engine for instant CI testing and cloud adapters (OpenAI, Claude, Gemini).</p>
-                      <div class="arch-item__tags">
-                        <span>$0.00 local API tokens</span>
-                        <span>Deterministic Mock harness</span>
-                        <span>Multi-provider fallback</span>
+
+                      <div class="bench-slider-control">
+                        <div class="studio-slide-row">
+                          <span class="slide-name">Pass Rate <span class="slide-formula-w">(w = 0.25)</span></span>
+                          <span class="studio-slide-val" id="benchValP">90%</span>
+                        </div>
+                        <input type="range" id="benchSlideP" min="0" max="100" value="90" aria-label="Pass Rate percentage" />
+                      </div>
+
+                      <div class="bench-slider-control">
+                        <div class="studio-slide-row">
+                          <span class="slide-name">Code Quality <span class="slide-formula-w">(w = 0.10)</span></span>
+                          <span class="studio-slide-val" id="benchValQ">88%</span>
+                        </div>
+                        <input type="range" id="benchSlideQ" min="0" max="100" value="88" aria-label="Code Quality percentage" />
+                      </div>
+
+                      <div class="bench-slider-control">
+                        <div class="studio-slide-row">
+                          <span class="slide-name">Efficiency <span class="slide-formula-w">(w = 0.10)</span></span>
+                          <span class="studio-slide-val" id="benchValE">82%</span>
+                        </div>
+                        <input type="range" id="benchSlideE" min="0" max="100" value="82" aria-label="Efficiency percentage" />
+                      </div>
+
+                      <div class="bench-slider-control">
+                        <div class="studio-slide-row">
+                          <span class="slide-name">Reliability <span class="slide-formula-w">(w = 0.05)</span></span>
+                          <span class="studio-slide-val" id="benchValR">91%</span>
+                        </div>
+                        <input type="range" id="benchSlideR" min="0" max="100" value="91" aria-label="Reliability percentage" />
                       </div>
                     </div>
 
-                    <!-- Frontier Cloud APIs -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Frontier Cloud APIs (Direct)</div>
-                        <span class="arch-badge">$0.03 – $0.15 / Query</span>
+                    <div class="studio-bench-score-card">
+                      <div class="bench-score-header">
+                        <span class="bench-score-k">COMPOSITE SWE SCORE</span>
+                        <span class="bench-tier-badge bench-tier--s" id="benchTierBadge">S-TIER &bull; VERIFIED</span>
                       </div>
-                      <div class="arch-item__mechanism">Mandatory Per-Token Metering</div>
-                      <p class="arch-item__desc">Linear billing scaling with request volume. Basic syntax extraction or formatting queries incur the same rate as complex architecture refactors.</p>
-                    </div>
-
-                    <!-- SaaS Subscriptions -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Proprietary SaaS Assistants</div>
-                        <span class="arch-badge arch-badge--warn">$20 – $40 / Month / User</span>
+                      <div class="bench-score-num-wrap">
+                        <span class="studio-bench-score-val" id="benchTotalScore">91.6</span>
+                        <span class="studio-bench-score-denom">/ 100</span>
                       </div>
-                      <div class="arch-item__mechanism">Subscription Lock-In</div>
-                      <p class="arch-item__desc">Ties developer workflows to fixed monthly seat subscriptions with usage quotas, proprietary interfaces, and zero offline air-gapped support.</p>
+                      <div class="bench-formula-note">
+                        <code>S = 0.50C + 0.25P + 0.10Q + 0.10E + 0.05R</code>
+                      </div>
+                      <div class="bench-suite-meta">
+                        <span>12 Standardized Tasks &bull; Pytest + Node 22</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Panel 4: Evaluation -->
-                <div class="matrix-panel is-hidden" id="matrix-eval">
-                  <div class="arch-compare-list">
-                    <!-- Picado Labs -->
-                    <div class="arch-item arch-item--winner">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">AgentBench Evaluation Suite</div>
-                        <span class="arch-badge arch-badge--green">12 Polyglot SWE Tasks</span>
-                      </div>
-                      <div class="arch-item__mechanism">Multi-File Repos + Automated GitHub PR Ingestion</div>
-                      <p class="arch-item__desc">12 multi-file benchmark tasks across Python (pytest) and Node.js 22 (node --test) with automated GitHub PR ingestion and 5-dimension weighted scoring ($S \in [0, 100]$).</p>
-                      <div class="arch-item__tags">
-                        <span>Automated PR Ingest</span>
-                        <span>7-category failure taxonomy</span>
-                        <span>CI PR gatekeeper action</span>
-                      </div>
-                    </div>
-
-                    <!-- HumanEval / MBPP -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">HumanEval / MBPP Benchmarks</div>
-                        <span class="arch-badge">Single-File Synthetic</span>
-                      </div>
-                      <div class="arch-item__mechanism">Isolated Function Assertions</div>
-                      <p class="arch-item__desc">Evaluates single-pass function generation via static string matching and basic exec() without multi-file repo structure, dependencies, or tool usage.</p>
-                    </div>
-
-                    <!-- Ad-Hoc Demos -->
-                    <div class="arch-item">
-                      <div class="arch-item__head">
-                        <div class="arch-item__title">Ad-Hoc Prompt Demos</div>
-                        <span class="arch-badge arch-badge--warn">Unstandardized</span>
-                      </div>
-                      <div class="arch-item__mechanism">Informal Testing</div>
-                      <p class="arch-item__desc">Lacks reproducible regression test suites, failure taxonomy diagnostics, or automated CI/CD PR verification workflows.</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
+              <!-- Studio Card Footer -->
               <div class="matrix-footer">
-                <span class="matrix-foot-item"><span class="matrix-dot"></span> IndependentVerifier Sandbox</span>
-                <span class="matrix-foot-item"><span class="matrix-dot"></span> &lt;3ms Pareto Routing</span>
-                <span class="matrix-foot-item"><span class="matrix-dot"></span> $0.00 Local Ollama</span>
+                <span class="matrix-foot-item"><span class="matrix-dot"></span> psutil sandbox isolation</span>
+                <span class="matrix-foot-item"><span class="matrix-dot"></span> &lt;3ms Pareto routing</span>
               </div>
-            </div>
-          </div>
+            </div><!-- /studio-card -->
+          </div><!-- /hero__media -->
         </div><!-- /hero__grid -->
 
         <ul class="hero__stats">
