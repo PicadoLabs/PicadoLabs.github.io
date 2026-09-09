@@ -96,11 +96,19 @@ An intelligent, explainable, cost- and latency-aware Large Language Model routin
 
 ---
 
-## Repositories & Contact
+## Repositories & Issue Trackers
 
-- **Terminal Agent**: [github.com/PicadoLabs/terminal-agent](https://github.com/PicadoLabs/terminal-agent)
-- **AgentBench**: [github.com/PicadoLabs/agent-bench](https://github.com/PicadoLabs/agent-bench)
-- **Model Router**: [github.com/PicadoLabs/ai-model-router](https://github.com/PicadoLabs/ai-model-router)
+- **Terminal Agent**: [PicadoLabs/terminal-agent](https://github.com/PicadoLabs/terminal-agent) &bull; [Issues Tracker](https://github.com/PicadoLabs/terminal-agent/issues)
+- **AgentBench**: [PicadoLabs/agent-bench](https://github.com/PicadoLabs/agent-bench) &bull; [Issues Tracker](https://github.com/PicadoLabs/agent-bench/issues)
+- **Model Router**: [PicadoLabs/ai-model-router](https://github.com/PicadoLabs/ai-model-router) &bull; [Issues Tracker](https://github.com/PicadoLabs/ai-model-router/issues)
 - **GitHub Organization**: [github.com/PicadoLabs](https://github.com/PicadoLabs)
-- **Email**: [picadolabs@gmail.com](mailto:picadolabs@gmail.com)
+
+---
+
+## Community, Social & Maintainer
+
+- **Official X (Twitter)**: [@PicadoLabs](https://x.com/PicadoLabs)
+- **Founder & Maintainer X**: [@Kap10x](https://x.com/Kap10x)
+- **Founder & Maintainer GitHub**: [@Kaap10](https://github.com/Kaap10)
+- **Contact Email**: [picadolabs@gmail.com](mailto:picadolabs@gmail.com)
 - **Website**: [picadolabs.me](https://picadolabs.me)
