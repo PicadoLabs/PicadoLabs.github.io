@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Picado Labs</title>
-  <meta name="description" content="Picado Labs is an open-source, local-first engineering organization cooking up tools for building, testing, and routing autonomous AI agents. Fuses Terminal Agent, AgentBench, and Model Router into one cohesive stack." />
+  <title>Picado Labs — Open-source tools for building, testing &amp; routing AI agents</title>
+  <meta name="description" content="Open-source developer infrastructure for AI coding agents: sub-3ms model routing, sandboxed terminal execution, and 5D benchmark verification." />
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,11 +26,8 @@
       <nav class="nav__links" id="navLinks" aria-label="Primary">
         <a href="#why">Why</a>
         <a href="#architecture">Architecture</a>
-        <a href="#terminal-agent">Terminal Agent</a>
-        <a href="#agent-bench">AgentBench</a>
-        <a href="#model-router">Model Router</a>
         <a href="#benchmarks">Benchmarks</a>
-        <a href="#code">Code</a>
+        <a href="docs.html">Docs</a>
         <a href="#contribute">Contribute</a>
       </nav>
       <div class="nav__actions">
@@ -48,1403 +45,746 @@
   </header>
 
   <main id="main">
-    <!-- ============ HERO ============ -->
+    <!-- ============ 01 — HERO ============ -->
     <section class="hero" id="top">
       <div class="wrap">
         <div class="hero__grid">
           <div class="hero__col">
-            <p class="eyebrow">IDEAS / AGENTS / IMPACT</p>
-            <h1 class="hero__title">Cooking up tools for building, testing &amp; routing <span class="u">AI agents</span>.</h1>
+            <p class="eyebrow">OPEN SOURCE &bull; AI ENGINEERING LAB</p>
+            <h1 class="hero__title">Open-source tools for <span class="u">building, testing &amp; routing</span> AI agents.</h1>
             <p class="hero__lede">
-              Picado Labs brings together three open-source engineering systems:
-              <a class="svc-link" href="#terminal-agent"><strong>Terminal Agent</strong></a> (verify-first autonomous code engineering in isolated sandboxes),
-              <a class="svc-link" href="#agent-bench"><strong>AgentBench</strong></a> (12 standardized SWE evaluation benchmarks with GitHub PR ingestion), and
-              <a class="svc-link" href="#model-router"><strong>Model Router</strong></a> (sub-3ms Pareto LLM traffic control &amp; explainability) —
-              delivering a unified platform that <strong>runs locally for $0.00 with Ollama</strong> and connects to OpenAI, Anthropic Claude, and Google Gemini.
+              Deterministic model routing, sandboxed terminal execution, and multi-dimensional benchmark verification for autonomous software engineering.
             </p>
 
+            <div class="hero__trust-badge">
+              <span class="trust-badge-dot"></span>
+              <span>ROUTE &bull; EXECUTE &bull; VERIFY &bull; EVALUATE</span>
+            </div>
+
             <div class="hero__cta">
-              <a class="btn btn--solid" href="#terminal-agent">Explore Terminal Agent</a>
-              <a class="btn btn--ghost" href="https://github.com/PicadoLabs" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn btn--solid" href="#model-router">Explore Model Router</a>
+              <a class="btn btn--ghost" href="https://github.com/PicadoLabs" target="_blank" rel="noopener">View GitHub</a>
             </div>
           </div><!-- /hero__col -->
 
           <div class="hero__media">
-            <!-- LIVE ENGINEERING STUDIO — 3 Interactive Subsystems -->
-            <div class="matrix-card studio-card" data-tabs>
-              <!-- Window Chrome Header -->
-              <div class="matrix-header studio-header">
-                <div class="matrix-title-wrap">
-                  <div class="studio-chrome-left">
-                    <div class="studio-mac-dots" aria-hidden="true">
-                      <span class="mac-dot mac-dot--red"></span>
-                      <span class="mac-dot mac-dot--amber"></span>
-                      <span class="mac-dot mac-dot--green"></span>
-                    </div>
-                    <span class="matrix-pill">LIVE ENGINEERING STUDIO</span>
-                  </div>
-                  <div class="studio-status-pill" id="simStatusPill">
-                    <span class="studio-status-dot"></span>
-                    <span id="simStatusText">IDLE</span>
-                  </div>
-                </div>
-
-                <div class="matrix-tabs" role="tablist" aria-label="Engineering Subsystems">
-                  <button class="matrix-tab is-active" data-tab="studio-terminal" role="tab" aria-selected="true">
-                    <span class="tab-indicator"></span>Terminal Agent
-                  </button>
-                  <button class="matrix-tab" data-tab="studio-router" role="tab" aria-selected="false">
-                    <span class="tab-indicator"></span>Model Router
-                  </button>
-                  <button class="matrix-tab" data-tab="studio-bench" role="tab" aria-selected="false">
-                    <span class="tab-indicator"></span>AgentBench
-                  </button>
-                </div>
+            <!-- HERO TECHNICAL SYSTEM DIAGRAM -->
+            <div class="hero-diagram" aria-label="Picado Labs Execution Pipeline">
+              <div class="hero-diagram__header">
+                <span class="hero-diagram__title">SYSTEM PIPELINE</span>
+                <span class="hero-diagram__status"><span class="hero-diagram__dot"></span> ACTIVE</span>
               </div>
 
-              <div class="matrix-panels hero-panels">
-
-                <!-- TAB 1: Terminal Agent Sandbox -->
-                <div class="matrix-panel" id="studio-terminal" role="tabpanel">
-                  <div class="studio-toolbar">
-                    <div class="studio-btn-group">
-                      <button class="btn btn--sm btn--solid studio-btn--run" id="btnRunSim" aria-label="Run automated simulation">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Run
-                      </button>
-                      <button class="btn btn--sm btn--ghost studio-btn--step" id="btnStepSim" aria-label="Step one execution line">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg> Step
-                      </button>
-                      <button class="btn btn--sm btn--ghost studio-btn--reset" id="btnResetSim" aria-label="Reset simulation">
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg> Reset
-                      </button>
-                    </div>
-                    <div class="studio-meta-badge">
-                      <span class="studio-badge-label">LOOP:</span>
-                      <span class="studio-badge-val">psutil Process-Tree Isolation</span>
+              <div class="hero-flow">
+                <!-- Task Node -->
+                <div class="hero-node">
+                  <div class="hero-node__left">
+                    <span class="hero-node__tag hero-node__tag--task">TASK</span>
+                    <div>
+                      <div class="hero-node__name">Software Task</div>
+                      <div class="hero-node__sub">Issue prompt or feature spec</div>
                     </div>
                   </div>
+                  <span class="hero-node-arrow">&darr;</span>
+                </div>
 
-                  <div class="studio-terminal" id="simTermScreen">
-                    <div class="terminal-titlebar">
-                      <div class="term-titlebar-left">
-                        <span class="term-titlebar-dot"></span>
-                        <span class="term-titlebar-text">sandbox: task_042_fix_async_deadlock.py</span>
-                      </div>
-                      <span class="term-titlebar-badge">ISOLATED PID: 38291</span>
+                <!-- Model Router Node -->
+                <div class="hero-node">
+                  <div class="hero-node__left">
+                    <span class="hero-node__tag hero-node__tag--router">ROUTE</span>
+                    <div>
+                      <div class="hero-node__name">Model Router</div>
+                      <div class="hero-node__sub">Choose the right model</div>
                     </div>
-                    <div class="terminal-body">
-                      <div class="studio-term-line" id="simLine1"><span class="t-prompt">$</span> <span class="t-cmd">terminal-agent run task_042_fix_async_deadlock.json</span></div>
-                      <div class="studio-term-line is-hidden" id="simLine2"><span class="term-badge term-badge--agent">AGENT</span> Spawning isolated psutil process sandbox... PID 38291</div>
-                      <div class="studio-term-line is-hidden" id="simLine3"><span class="term-badge term-badge--exec">EXEC</span> pytest tests/ -x --tb=short — 12 tests collected</div>
-                      <div class="studio-term-line is-hidden" id="simLine4"><span class="term-badge term-badge--recover">RECOVER</span> Failure Cat-7: Threading race condition — applying fix strategy...</div>
-                      <div class="studio-term-line is-hidden" id="simLine5"><span class="term-badge term-badge--exec">EXEC</span> pytest tests/ -x — 12 passed in 0.84s</div>
-                      <div class="studio-term-line is-hidden" id="simLine6"><span class="term-badge term-badge--verified">VERIFIED</span> Task 042 — IndependentVerifier: 0 failures. Status: COMPLETE</div>
-                      <span class="term-cursor" id="simCursor">_</span>
+                  </div>
+                  <span class="hero-node-arrow">&darr;</span>
+                </div>
+
+                <!-- Terminal Agent Node -->
+                <div class="hero-node">
+                  <div class="hero-node__left">
+                    <span class="hero-node__tag hero-node__tag--agent">EXECUTE</span>
+                    <div>
+                      <div class="hero-node__name">Terminal Agent</div>
+                      <div class="hero-node__sub">Perform the engineering work</div>
+                    </div>
+                  </div>
+                  <span class="hero-node-arrow">&darr;</span>
+                </div>
+
+                <!-- Verify Node -->
+                <div class="hero-node">
+                  <div class="hero-node__left">
+                    <span class="hero-node__tag hero-node__tag--verify">VERIFY</span>
+                    <div>
+                      <div class="hero-node__name">Independent Verification</div>
+                      <div class="hero-node__sub">Run automated tests</div>
+                    </div>
+                  </div>
+                  <span class="hero-node-arrow">&darr;</span>
+                </div>
+
+                <!-- Pass / Fail Branch -->
+                <div class="hero-branch">
+                  <div class="hero-branch-item hero-branch-item--pass">
+                    <div>
+                      <span class="hero-branch-label hero-branch-label--pass">PASS &rarr; SHIP</span>
+                      <div class="hero-branch-sub">Merge verified code</div>
+                    </div>
+                  </div>
+                  <div class="hero-branch-item hero-branch-item--fail">
+                    <div>
+                      <span class="hero-branch-label hero-branch-label--fail">FAIL &rarr; REPAIR</span>
+                      <div class="hero-branch-sub">&rarr; Agent auto-repair loop</div>
                     </div>
                   </div>
                 </div>
 
-                <!-- TAB 2: Model Router Playground -->
-                <div class="matrix-panel is-hidden" id="studio-router" role="tabpanel">
-                  <div class="studio-chips-wrap">
-                    <span class="studio-chips-label">Presets:</span>
-                    <div class="studio-chips">
-                      <button class="sim-chip is-active" data-query="debug async deadlock">debug deadlock</button>
-                      <button class="sim-chip" data-query="extract JSON schema">parse JSON</button>
-                      <button class="sim-chip" data-query="write a Python function">write code</button>
-                      <button class="sim-chip" data-query="prove math theorem">math proof</button>
+                <!-- AgentBench Node -->
+                <div class="hero-node hero-node--bench">
+                  <div class="hero-node__left">
+                    <span class="hero-node__tag hero-node__tag--bench">EVALUATE</span>
+                    <div>
+                      <div class="hero-node__name">AgentBench</div>
+                      <div class="hero-node__sub">Benchmark real SWE performance</div>
                     </div>
                   </div>
-
-                  <div class="studio-router-input-box">
-                    <span class="input-prompt-sym" aria-hidden="true">&gt;</span>
-                    <input id="heroRouterQuery" type="text" value="debug async deadlock" placeholder="Enter task (e.g. solve memory leak, parse schema...)" class="studio-input" />
-                    <button class="btn btn--sm btn--solid studio-route-btn" id="btnRunRouter">
-                      Route Query
-                    </button>
-                  </div>
-
-                  <div class="studio-router-card" id="heroRouterResult">
-                    <div class="router-card-header">
-                      <div class="router-model-group">
-                        <span class="router-target-label">DISPATCH TARGET</span>
-                        <span class="router-model-name" id="heroRouterModel">ollama-deepseek-r1:1.5b</span>
-                      </div>
-                      <span class="router-engine-badge" id="heroRouterEngine">LOCAL OLLAMA ($0.00)</span>
-                    </div>
-
-                    <div class="router-metrics-grid">
-                      <div class="router-metric-item">
-                        <span class="router-metric-k">CLASSIFICATION</span>
-                        <span class="router-metric-v" id="heroRouterType">DEBUGGING</span>
-                      </div>
-                      <div class="router-metric-item">
-                        <span class="router-metric-k">ROUTING LATENCY</span>
-                        <span class="router-metric-v router-metric-v--green" id="heroRouterTime">&lt;1.8ms</span>
-                      </div>
-                      <div class="router-metric-item">
-                        <span class="router-metric-k">INFERENCE COST</span>
-                        <span class="router-metric-v router-metric-v--green" id="heroRouterCost">$0.00 (Local)</span>
-                      </div>
-                    </div>
-
-                    <div class="router-reasoning-box">
-                      <span class="router-reasoning-head">EXPLAINABILITY ENGINE</span>
-                      <p class="router-reasoning-text" id="heroRouterReason">Concurrency analysis &amp; stack trace diagnosis require deep reasoning chains. Dispatched to DeepSeek R1 reasoning engine at zero API cost.</p>
-                    </div>
-                  </div>
+                  <span class="hero-diagram__dot"></span>
                 </div>
-
-                <!-- TAB 3: AgentBench Scoring -->
-                <div class="matrix-panel is-hidden" id="studio-bench" role="tabpanel">
-                  <div class="studio-bench-grid">
-                    <div class="studio-bench-sliders">
-                      <div class="bench-slider-control">
-                        <div class="studio-slide-row">
-                          <span class="slide-name">Correctness <span class="slide-formula-w">(w = 0.50)</span></span>
-                          <span class="studio-slide-val" id="benchValC">95%</span>
-                        </div>
-                        <input type="range" id="benchSlideC" min="0" max="100" value="95" aria-label="Correctness percentage" />
-                      </div>
-
-                      <div class="bench-slider-control">
-                        <div class="studio-slide-row">
-                          <span class="slide-name">Pass Rate <span class="slide-formula-w">(w = 0.25)</span></span>
-                          <span class="studio-slide-val" id="benchValP">90%</span>
-                        </div>
-                        <input type="range" id="benchSlideP" min="0" max="100" value="90" aria-label="Pass Rate percentage" />
-                      </div>
-
-                      <div class="bench-slider-control">
-                        <div class="studio-slide-row">
-                          <span class="slide-name">Code Quality <span class="slide-formula-w">(w = 0.10)</span></span>
-                          <span class="studio-slide-val" id="benchValQ">88%</span>
-                        </div>
-                        <input type="range" id="benchSlideQ" min="0" max="100" value="88" aria-label="Code Quality percentage" />
-                      </div>
-
-                      <div class="bench-slider-control">
-                        <div class="studio-slide-row">
-                          <span class="slide-name">Efficiency <span class="slide-formula-w">(w = 0.10)</span></span>
-                          <span class="studio-slide-val" id="benchValE">82%</span>
-                        </div>
-                        <input type="range" id="benchSlideE" min="0" max="100" value="82" aria-label="Efficiency percentage" />
-                      </div>
-
-                      <div class="bench-slider-control">
-                        <div class="studio-slide-row">
-                          <span class="slide-name">Reliability <span class="slide-formula-w">(w = 0.05)</span></span>
-                          <span class="studio-slide-val" id="benchValR">91%</span>
-                        </div>
-                        <input type="range" id="benchSlideR" min="0" max="100" value="91" aria-label="Reliability percentage" />
-                      </div>
-                    </div>
-
-                    <div class="studio-bench-score-card">
-                      <div class="bench-score-header">
-                        <span class="bench-score-k">COMPOSITE SWE SCORE</span>
-                        <span class="bench-tier-badge bench-tier--s" id="benchTierBadge">S-TIER &bull; VERIFIED</span>
-                      </div>
-                      <div class="bench-score-num-wrap">
-                        <span class="studio-bench-score-val" id="benchTotalScore">91.6</span>
-                        <span class="studio-bench-score-denom">/ 100</span>
-                      </div>
-                      <div class="bench-formula-note">
-                        <code>S = 0.50C + 0.25P + 0.10Q + 0.10E + 0.05R</code>
-                      </div>
-                      <div class="bench-suite-meta">
-                        <span>12 Standardized Tasks &bull; Pytest + Node 22</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
-
-              <!-- Studio Card Footer -->
-              <div class="matrix-footer">
-                <span class="matrix-foot-item"><span class="matrix-dot"></span> psutil sandbox isolation</span>
-                <span class="matrix-foot-item"><span class="matrix-dot"></span> &lt;3ms Pareto routing</span>
-              </div>
-            </div><!-- /studio-card -->
+            </div><!-- /hero-diagram -->
           </div><!-- /hero__media -->
         </div><!-- /hero__grid -->
+      </div>
+    </section>
 
-        <ul class="hero__stats">
-          <li><span class="stat__n">3</span><span class="stat__l">Production Systems</span></li>
-          <li><span class="stat__n">$0.00</span><span class="stat__l">Local cost with Ollama</span></li>
-          <li><span class="stat__n">&lt;3ms</span><span class="stat__l">Deterministic routing</span></li>
-          <li><span class="stat__n">Verify-First</span><span class="stat__l">Objective test validation</span></li>
+    <!-- ============ 02 — THE BIG IDEA ============ -->
+    <section class="what-is" id="big-idea" aria-label="The Big Idea">
+      <div class="wrap">
+        <p class="what-is__eyebrow">THE BIG IDEA</p>
+        <h2 class="what-is__title">AI agents need more than a prompt.</h2>
+        <p class="what-is__lede">
+          Writing code is only one part of software engineering. To solve real problems autonomously, agents need smart model selection, sandboxed execution, automated test verification, and objective evaluation.
+        </p>
+
+        <div class="what-is__grid">
+          <div class="what-is__card">
+            <span class="what-is__step">01 &bull; ROUTE</span>
+            <h3 class="what-is__heading">Choose the Right Model</h3>
+            <p class="what-is__desc">Match each request to the fastest, most cost-effective model that fits.</p>
+          </div>
+
+          <div class="what-is__card">
+            <span class="what-is__step">02 &bull; EXECUTE</span>
+            <h3 class="what-is__heading">Run in a Terminal</h3>
+            <p class="what-is__desc">Let the agent edit files and run build commands in an isolated sandbox.</p>
+          </div>
+
+          <div class="what-is__card">
+            <span class="what-is__step">03 &bull; VERIFY</span>
+            <h3 class="what-is__heading">Verify the Result</h3>
+            <p class="what-is__desc">Run test suites independently so broken code is caught and repaired.</p>
+          </div>
+
+          <div class="what-is__card">
+            <span class="what-is__step">04 &bull; EVALUATE</span>
+            <h3 class="what-is__heading">Benchmark Agents</h3>
+            <p class="what-is__desc">Measure agent accuracy on realistic software engineering tasks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 — ONE STACK. THREE SYSTEMS. ============ -->
+    <section class="stack-section" id="stack" aria-label="The Picado Labs Stack">
+      <div class="wrap">
+        <div class="stack-section__head">
+          <h2 class="stack-section__title">One stack. Three systems.</h2>
+          <p class="stack-section__lede">Three focused open-source projects working together as one coherent ecosystem.</p>
+        </div>
+
+        <div class="stack-cards-grid">
+          <!-- Card 1: Model Router -->
+          <a class="stack-card" href="#model-router">
+            <span class="stack-card__badge">01 &bull; ROUTE</span>
+            <div>
+              <h3 class="stack-card__title">Model Router</h3>
+              <p class="stack-card__desc">
+                Intelligent LLM traffic routing infrastructure that dispatches tasks to local or cloud models based on speed, cost, and complexity.
+              </p>
+            </div>
+            <div class="stack-card__caps">&lt;3ms latency &bull; Explainable &bull; Local + Cloud</div>
+            <span class="stack-card__link">Explore Model Router &rarr;</span>
+          </a>
+
+          <!-- Card 2: Terminal Agent -->
+          <a class="stack-card" href="#terminal-agent">
+            <span class="stack-card__badge">02 &bull; EXECUTE &amp; VERIFY</span>
+            <div>
+              <h3 class="stack-card__title">Terminal Agent</h3>
+              <p class="stack-card__desc">
+                An autonomous coding agent that works in a sandboxed terminal: explores code, edits files, runs tests, and repairs failures.
+              </p>
+            </div>
+            <div class="stack-card__caps">12 tools &bull; Sandboxed &bull; Local-first</div>
+            <span class="stack-card__link">Explore Terminal Agent &rarr;</span>
+          </a>
+
+          <!-- Card 3: AgentBench -->
+          <a class="stack-card" href="#agent-bench">
+            <span class="stack-card__badge">03 &bull; EVALUATE</span>
+            <div>
+              <h3 class="stack-card__title">AgentBench</h3>
+              <p class="stack-card__desc">
+                Evaluation and benchmarking platform to test coding agents on realistic software engineering tasks and score actual problem-solving.
+              </p>
+            </div>
+            <div class="stack-card__caps">12 tasks &bull; Python + Node.js &bull; 5D scoring</div>
+            <span class="stack-card__link">Explore AgentBench &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 — ARCHITECTURE & ECOSYSTEM (How it works) ============ -->
+    <section class="ecosystem-section" id="architecture" aria-label="How it works - Architecture">
+      <div id="ecosystem"></div>
+      <div class="wrap">
+        <h2 class="how-it-works__title">How it works</h2>
+        <div class="how-it-works__bar"></div>
+        <p class="how-it-works__lede">
+          Three open-source primitives, each doing the one job it is best at, joined in an autonomous engineering loop.
+        </p>
+
+        <div class="arch-diagram-card">
+          <div class="arch-diagram-scroll">
+            <svg class="arch-diagram-svg" viewBox="0 0 940 280" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture diagram showing flow from Task Prompt to Request Analyzer, Model Router, Checkpoints, Terminal Agent, and AgentBench">
+              <defs>
+                <marker id="arch-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0f172a" />
+                </marker>
+              </defs>
+
+              <!-- Left Input Label: prompt -->
+              <text x="25" y="65" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" fill="#10b981">prompt</text>
+              <!-- Arrow: prompt -> Request Analyzer -->
+              <line x1="85" y1="60" x2="148" y2="60" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arch-arrow)" />
+
+              <!-- Node 1: Request Analyzer -->
+              <rect x="150" y="30" width="180" height="62" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="1.5" />
+              <text x="240" y="55" font-family="'Inter', -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#0f172a" text-anchor="middle">Request Analyzer</text>
+              <text x="240" y="75" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#64748b" text-anchor="middle">&lt;3ms · complexity</text>
+
+              <!-- Arrow: Analyzer -> Model Router -->
+              <line x1="330" y1="60" x2="408" y2="60" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arch-arrow)" />
+
+              <!-- Node 2 (Solid Green Box): Model Router -->
+              <rect x="410" y="30" width="190" height="62" rx="3" fill="#10b981" stroke="#10b981" stroke-width="1.5" />
+              <text x="505" y="55" font-family="'Inter', -apple-system, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Model Router</text>
+              <text x="505" y="75" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#ecfdf5" text-anchor="middle">Pareto · Ollama / Cloud</text>
+
+              <!-- Arrow (Down): Model Router -> Terminal Agent -->
+              <line x1="505" y1="92" x2="505" y2="158" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arch-arrow)" />
+              <text x="515" y="130" font-family="'JetBrains Mono', monospace" font-size="11" fill="#64748b">model + budget</text>
+
+              <!-- Node 3 (Dashed Box - Left): Checkpoints / State -->
+              <rect x="150" y="160" width="180" height="62" rx="3" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" stroke-dasharray="5,4" />
+              <text x="240" y="185" font-family="'Inter', -apple-system, sans-serif" font-size="14" font-weight="700" fill="#065f46" text-anchor="middle">Checkpoints / State</text>
+              <text x="240" y="205" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#059669" text-anchor="middle">atomic rollback · git diff</text>
+
+              <!-- Arrow: Checkpoints -> Terminal Agent -->
+              <line x1="330" y1="191" x2="408" y2="191" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arch-arrow)" />
+
+              <!-- Node 4 (Center): Terminal Agent -->
+              <rect x="410" y="160" width="190" height="62" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="1.5" />
+              <text x="505" y="185" font-family="'Inter', -apple-system, sans-serif" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Terminal Agent</text>
+              <text x="505" y="205" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#64748b" text-anchor="middle">psutil sandbox · repair</text>
+
+              <!-- Arrow: Terminal Agent -> AgentBench -->
+              <line x1="600" y1="191" x2="678" y2="191" stroke="#0f172a" stroke-width="1.5" marker-end="url(#arch-arrow)" />
+
+              <!-- Node 5 (Right): AgentBench & Verifier -->
+              <rect x="680" y="160" width="190" height="62" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="1.5" />
+              <text x="775" y="185" font-family="'Inter', -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#0f172a" text-anchor="middle">AgentBench · Verifier</text>
+              <text x="775" y="205" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#64748b" text-anchor="middle">5D SWE score · verify</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Architectural Comparison Table -->
+        <div class="comparison-block" style="margin-top: 40px;">
+          <h3 class="table__title" style="margin-top: 0;">Architectural Comparison</h3>
+          <div class="table__scroll">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Traditional AI Wrappers</th>
+                  <th>Standard Coding Assistants</th>
+                  <th>Picado Labs Suite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="is-best">
+                  <td>Completion Verification</td>
+                  <td>LLM self-report (High hallucination)</td>
+                  <td>User-prompted test reflection</td>
+                  <td>Independent Verifier in isolated sandbox</td>
+                </tr>
+                <tr>
+                  <td>Security &amp; Sandboxing</td>
+                  <td>Direct host execution, zero bounds</td>
+                  <td>Manual confirmation prompts only</td>
+                  <td>5-tier policy, psutil process tree kill, SecretGuard</td>
+                </tr>
+                <tr>
+                  <td>Context Management</td>
+                  <td>Raw prompt dumping / overflow</td>
+                  <td>Grep / basic ctags</td>
+                  <td>DeterministicRanker (AST symbols, sub-second)</td>
+                </tr>
+                <tr>
+                  <td>Failure Recovery</td>
+                  <td>Generic "try again" loop</td>
+                  <td>Manual developer intervention</td>
+                  <td>12-category classification + Checkpoint rollback</td>
+                </tr>
+                <tr>
+                  <td>LLM Traffic Routing</td>
+                  <td>Hardcoded single model</td>
+                  <td>Manual dropdown selector</td>
+                  <td>&lt;3ms Pareto routing (Quality/Cost/Speed)</td>
+                </tr>
+                <tr>
+                  <td>Local / Offline Cost</td>
+                  <td>Cloud API credits required</td>
+                  <td>Subscription locked</td>
+                  <td>$0.00 native local inference with Ollama</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 — MODEL ROUTER ============ -->
+    <section class="project-section project-section--alt" id="model-router">
+      <div class="wrap">
+        <p class="eyebrow">01 &bull; ROUTE</p>
+        <h2 class="stack-section__title">Model Router</h2>
+        <p class="project-hero-statement">Not every task needs the biggest model.</p>
+        <p class="project-desc">
+          <strong>The Issue Solved:</strong> Sending every request to frontier cloud LLMs leads to huge API bills, high latency, and pipeline failure during provider outages. Model Router dynamically chooses the best local or cloud model in &lt;3ms with fallback protection.
+        </p>
+
+        <!-- Diagram 2: Model Router -->
+        <div class="compact-workflow" aria-label="Model Router Workflow">
+          <span class="wf-step">REQUEST</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">ANALYZE</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">COMPARE</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">SELECT</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step wf-step--green">EXECUTE</span>
+        </div>
+
+        <!-- 4 Capabilities -->
+        <div class="cap-grid-4">
+          <div class="cap-card">
+            <span class="cap-card__label">FAST</span>
+            <p class="cap-card__desc">Sub-3ms routing.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">EXPLAINABLE</span>
+            <p class="cap-card__desc">See why it was chosen.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">COST-AWARE</span>
+            <p class="cap-card__desc">Avoid unnecessary spend.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">FALLBACK</span>
+            <p class="cap-card__desc">Recover from provider failures.</p>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn btn--solid" href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">
+            Explore Model Router &rarr;
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">
+            Issues &amp; Requests &rarr;
+          </a>
+          <a class="btn btn--ghost" href="docs.html#model-router-overview">
+            Full Docs &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 — TERMINAL AGENT ============ -->
+    <section class="project-section" id="terminal-agent">
+      <div class="wrap">
+        <p class="eyebrow">02 &bull; EXECUTE &amp; VERIFY</p>
+        <h2 class="stack-section__title">Terminal Agent</h2>
+        <p class="project-hero-statement">An AI coding agent that checks its work.</p>
+        <p class="project-desc">
+          <strong>The Issue Solved:</strong> AI code assistants frequently generate code with broken syntax, failing tests, or invalid imports without knowing it. Terminal Agent executes inside a secure sandbox, runs tests, catches errors, and automatically rolls back or repairs failures.
+        </p>
+
+        <!-- Diagram 3: Terminal Agent -->
+        <div class="compact-workflow" aria-label="Terminal Agent Workflow">
+          <span class="wf-step">TASK</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">UNDERSTAND</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">EDIT</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">TEST</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step wf-step--amber">REPAIR</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step wf-step--green">VERIFY</span>
+        </div>
+
+        <!-- 4 Core Capabilities -->
+        <div class="cap-grid-4">
+          <div class="cap-card">
+            <span class="cap-card__label">VERIFY</span>
+            <p class="cap-card__desc">Tests decide whether the task succeeded.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">SANDBOX</span>
+            <p class="cap-card__desc">Keep execution controlled.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">RECOVER</span>
+            <p class="cap-card__desc">Repair failures automatically.</p>
+          </div>
+          <div class="cap-card">
+            <span class="cap-card__label">ROLLBACK</span>
+            <p class="cap-card__desc">Restore when needed.</p>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn btn--solid" href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener">
+            Explore Terminal Agent &rarr;
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/terminal-agent/issues" target="_blank" rel="noopener">
+            Issues &amp; Requests &rarr;
+          </a>
+          <a class="btn btn--ghost" href="docs.html#terminal-agent-overview">
+            Full Docs &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 — BENCHMARKS & AGENTBENCH ============ -->
+    <section class="project-section project-section--alt" id="benchmarks">
+      <div id="agent-bench"></div>
+      <div class="wrap">
+        <p class="eyebrow">03 &bull; EVALUATE</p>
+        <h2 class="stack-section__title">AgentBench</h2>
+        <p class="project-hero-statement">Don't just measure what an agent writes. Measure what it solves.</p>
+        <p class="project-desc">
+          <strong>The Issue Solved:</strong> Most AI benchmarks measure isolated text generation rather than end-to-end bug fixing on real repos. AgentBench objectively tests coding agents on 12 standardized polyglot tasks with 5D deterministic scoring.
+        </p>
+
+        <!-- Diagram 4: AgentBench -->
+        <div class="compact-workflow" aria-label="AgentBench Workflow">
+          <span class="wf-step">AGENT</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">TASK</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step">TEST</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step wf-step--green">SCORE</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-step wf-step--green">COMPARE</span>
+        </div>
+
+        <!-- 4 Large Metrics -->
+        <div class="cap-grid-4">
+          <div class="cap-card cap-card--metric">
+            <span class="cap-card__val">12</span>
+            <p class="cap-card__unit">Tasks</p>
+          </div>
+          <div class="cap-card cap-card--metric">
+            <span class="cap-card__val cap-card__val--sm">Python + Node.js</span>
+            <p class="cap-card__unit">Polyglot</p>
+          </div>
+          <div class="cap-card cap-card--metric">
+            <span class="cap-card__val">5</span>
+            <p class="cap-card__unit">Scoring dimensions</p>
+          </div>
+          <div class="cap-card cap-card--metric">
+            <span class="cap-card__val">7</span>
+            <p class="cap-card__unit">Failure categories</p>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn btn--solid" href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener">
+            Explore AgentBench &rarr;
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/agent-bench/issues" target="_blank" rel="noopener">
+            Issues &amp; Requests &rarr;
+          </a>
+          <a class="btn btn--ghost" href="docs.html#agent-bench-overview">
+            Full Docs &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 08 — WHY PICADO LABS ============ -->
+    <section class="why-section" id="why">
+      <div class="wrap">
+        <h2 class="stack-section__title">Built around what matters.</h2>
+
+        <div class="why-grid-6">
+          <div class="why-card">
+            <h3 class="why-card__title">VERIFY-FIRST</h3>
+            <p class="why-card__desc">Know whether the code actually works.</p>
+          </div>
+          <div class="why-card">
+            <h3 class="why-card__title">LOCAL-FIRST</h3>
+            <p class="why-card__desc">Run locally with Ollama.</p>
+          </div>
+          <div class="why-card">
+            <h3 class="why-card__title">SAFE</h3>
+            <p class="why-card__desc">Keep agent execution controlled.</p>
+          </div>
+          <div class="why-card">
+            <h3 class="why-card__title">SMART ROUTING</h3>
+            <p class="why-card__desc">Use the model that fits the task.</p>
+          </div>
+          <div class="why-card">
+            <h3 class="why-card__title">RECOVERY</h3>
+            <p class="why-card__desc">Handle failures without starting over.</p>
+          </div>
+          <div class="why-card">
+            <h3 class="why-card__title">REAL EVALUATION</h3>
+            <p class="why-card__desc">Measure actual engineering performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 09 — PROOF / METRICS STRIP ============ -->
+    <section class="metrics-strip-section" aria-label="Key Numbers">
+      <div class="wrap">
+        <p class="eyebrow" style="text-align: center;">PROOF AT A GLANCE</p>
+        <h2 class="stack-section__title" style="text-align: center;">The stack, at a glance.</h2>
+
+        <ul class="proof-strip">
+          <li class="proof-item">
+            <span class="proof-n">3</span>
+            <span class="proof-l">Open-source systems</span>
+          </li>
+          <li class="proof-item">
+            <span class="proof-n">12</span>
+            <span class="proof-l">AgentBench tasks</span>
+          </li>
+          <li class="proof-item">
+            <span class="proof-n">12</span>
+            <span class="proof-l">Terminal Agent tools</span>
+          </li>
+          <li class="proof-item">
+            <span class="proof-n">&lt;3ms</span>
+            <span class="proof-l">Measured routing overhead</span>
+          </li>
+          <li class="proof-item">
+            <span class="proof-n">Polyglot</span>
+            <span class="proof-l">Python + Node.js</span>
+          </li>
+          <li class="proof-item">
+            <span class="proof-n">MIT</span>
+            <span class="proof-l">Open source</span>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ BUILT ON 3 PRIMITIVES ============ -->
-    <section class="builton" aria-label="Built on 3 Core Primitives">
+    <!-- ============ 10 — CONTRIBUTE & OPEN SOURCE ============ -->
+    <section class="open-source-section" id="contribute">
+      <div id="open-source"></div>
       <div class="wrap">
-        <p class="builton__eyebrow">Built on three specialized AI engineering systems</p>
-        <div class="stack">
-          <!-- Primitive 1: Terminal Agent -->
-          <a class="svc" href="#terminal-agent">
-            <span class="svc__icon">
-              <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
-                <defs>
-                  <linearGradient id="gterm" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#10B981" /><stop offset="1" stop-color="#047857" />
-                  </linearGradient>
-                </defs>
-                <rect width="48" height="48" rx="11" fill="url(#gterm)" />
-                <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 18 l6 6 -6 6" />
-                  <path d="M24 30 h10" />
-                  <rect x="10" y="10" width="28" height="28" rx="4" />
-                </g>
-              </svg>
-            </span>
-            <span class="svc__body">
-              <span class="svc__name">Terminal Agent <span class="svc__ext" aria-hidden="true">↗</span></span>
-              <span class="svc__role">Verify-First autonomous agent · psutil process tree isolation · 12 tools</span>
-            </span>
-          </a>
+        <p class="eyebrow">COMMUNITY &bull; OPEN ECOSYSTEM</p>
+        <h2 class="stack-section__title">Open source by default.</h2>
+        <p class="stack-section__lede">Run it locally. Read the code. Open an issue. Submit a pull request.</p>
 
-          <span class="stack__plus" aria-hidden="true">+</span>
+        <div class="repo-grid-3">
+          <!-- Card 1: Model Router -->
+          <div class="repo-card">
+            <div class="repo-card__top">
+              <span class="repo-card__step">01 &bull; ROUTE</span>
+              <span class="repo-card__license">MIT LICENSE</span>
+            </div>
+            
+            <div class="repo-card__head">
+              <h3 class="repo-card__name">Model Router</h3>
+              <a class="repo-card__slug" href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener" aria-label="ai-model-router on GitHub">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>PicadoLabs/ai-model-router</span>
+              </a>
+            </div>
 
-          <!-- Primitive 2: AgentBench -->
-          <a class="svc" href="#agent-bench">
-            <span class="svc__icon">
-              <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
-                <defs>
-                  <linearGradient id="gbench" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#F97316" /><stop offset="1" stop-color="#C2410C" />
-                  </linearGradient>
-                </defs>
-                <rect width="48" height="48" rx="11" fill="url(#gbench)" />
-                <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
-                  <line x1="14" y1="34" x2="14" y2="24" />
-                  <line x1="24" y1="34" x2="24" y2="16" />
-                  <line x1="34" y1="34" x2="34" y2="20" />
-                  <path d="M10 34 h28" />
-                </g>
-              </svg>
-            </span>
-            <span class="svc__body">
-              <span class="svc__name">AgentBench <span class="svc__ext" aria-hidden="true">↗</span></span>
-              <span class="svc__role">12 polyglot SWE tasks · GitHub PR ingestion · weighted scoring engine</span>
-            </span>
-          </a>
+            <p class="repo-card__desc">
+              Sub-3ms Pareto task-to-model routing across local Ollama instances and frontier APIs with explainable cost tracking.
+            </p>
 
-          <span class="stack__plus" aria-hidden="true">+</span>
+            <div class="repo-card__badges">
+              <span class="repo-badge">Python</span>
+              <span class="repo-badge">&lt;3ms Routing</span>
+              <span class="repo-badge">Ollama + APIs</span>
+              <span class="repo-badge">CLI / REST</span>
+            </div>
 
-          <!-- Primitive 3: Model Router -->
-          <a class="svc" href="#model-router">
-            <span class="svc__icon">
-              <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
-                <defs>
-                  <linearGradient id="grouter" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#8B5CF6" /><stop offset="1" stop-color="#5B21B6" />
-                  </linearGradient>
-                </defs>
-                <rect width="48" height="48" rx="11" fill="url(#grouter)" />
-                <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 24 h8 l4 -10 l4 20 l4 -10 h6" />
-                </g>
-              </svg>
-            </span>
-            <span class="svc__body">
-              <span class="svc__name">Model Router <span class="svc__ext" aria-hidden="true">↗</span></span>
-              <span class="svc__role">&lt;3ms Pareto routing · 12 task heuristics · budget intervention guards</span>
-            </span>
-          </a>
-        </div>
-        <p class="builton__note">Unified provider support: execute locally at zero API cost with <strong>Ollama</strong> (Qwen 2.5 Coder, DeepSeek R1, Llama 3.2) or connect to OpenAI, Anthropic Claude, and Google Gemini.</p>
-      </div>
-    </section>
+            <div class="repo-clone-box">
+              <span class="repo-clone-prompt">$</span>
+              <code class="repo-clone-cmd">git clone https://github.com/PicadoLabs/ai-model-router.git</code>
+              <button class="copy repo-clone-copy" data-copy="git clone https://github.com/PicadoLabs/ai-model-router.git" aria-label="Copy clone command">copy</button>
+            </div>
 
-    <!-- ============ WHY ============ -->
-    <section class="section" id="why">
-      <div class="wrap">
-        <h2 class="section__title">Why Picado Labs</h2>
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__no">01</span>
-            <h3>Verify-First Autonomy</h3>
-            <p>The agent cannot verify itself. An independent verification engine (<code>IndependentVerifier</code>) executes test runners in isolated sandboxes and checks diff budgets before declaring success.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">02</span>
-            <h3>Sub-3ms Pareto Routing</h3>
-            <p>Dual-mode request analyzer extracts complexity in under 2.5ms, scoring models across 5 Pareto dimensions (Quality, Cost, Speed, Capabilities, Reliability) with explainability reports.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">03</span>
-            <h3>$0.00 Local-First Dev</h3>
-            <p>Full native integration with local Ollama daemons and Mock provider harnesses, enabling offline development and test automation without paid API keys.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">04</span>
-            <h3>Zero-Trust Sandboxing</h3>
-            <p>5-tier command policy (<code>safe</code>, <code>write</code>, <code>destructive</code>, <code>network</code>, <code>privileged</code>), Shannon entropy <code>SecretGuard</code>, and OS-level <code>psutil</code> process-tree cleanup.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">05</span>
-            <h3>12-Category Self-Healing</h3>
-            <p>Runtime failure classifier mapping syntax, dependency, timeout, and assertion errors to targeted repair plans and instant snapshot rollback (<code>CheckpointManager</code>).</p>
-          </article>
-          <article class="card">
-            <span class="card__no">06</span>
-            <h3>Polyglot Benchmarks &amp; CI</h3>
-            <p>12 standardized benchmarks across Python (<code>pytest</code>) and Node.js (<code>node --test</code>) with automated GitHub PR ingestion and CI PR gatekeepers.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ARCHITECTURE ============ -->
-    <section class="section section--alt" id="architecture">
-      <div class="wrap">
-        <h2 class="section__title">How it works</h2>
-        <p class="section__lede">Three specialized engines, each doing the one job it is best at, connected across the agent lifecycle.</p>
-
-        <div class="flow">
-          <div class="flow__step">
-            <div class="flow__num">01</div>
-            <div class="flow__body">
-              <strong>Task Prompt In</strong>
-              <span>Developer submits a task description via CLI or API</span>
+            <div class="repo-card__actions">
+              <a class="btn btn--sm btn--solid" href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">
+                <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub &rarr;
+              </a>
+              <a class="btn btn--sm btn--ghost" href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">
+                Issues &rarr;
+              </a>
+              <a class="repo-card__doc-link" href="docs.html#model-router-overview">Docs &rarr;</a>
             </div>
           </div>
-          <div class="flow__arrow">&#8594;</div>
-          <div class="flow__step flow__step--em">
-            <div class="flow__num">02</div>
-            <div class="flow__body">
-              <strong>Model Router Classifies</strong>
-              <span>Sub-3ms heuristic analysis — task type, complexity (0.05–0.99), Pareto model scoring</span>
+
+          <!-- Card 2: AgentBench -->
+          <div class="repo-card">
+            <div class="repo-card__top">
+              <span class="repo-card__step">03 &bull; EVALUATE</span>
+              <span class="repo-card__license">MIT LICENSE</span>
+            </div>
+            
+            <div class="repo-card__head">
+              <h3 class="repo-card__name">AgentBench</h3>
+              <a class="repo-card__slug" href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener" aria-label="agent-bench on GitHub">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>PicadoLabs/agent-bench</span>
+              </a>
+            </div>
+
+            <p class="repo-card__desc">
+              12 standardized polyglot coding benchmarks with 5D composite SWE scoring, telemetry, and automated GitHub PR ingestion.
+            </p>
+
+            <div class="repo-card__badges">
+              <span class="repo-badge">Python + Node</span>
+              <span class="repo-badge">12 Tasks</span>
+              <span class="repo-badge">5D Scoring</span>
+              <span class="repo-badge">PR Ingest</span>
+            </div>
+
+            <div class="repo-clone-box">
+              <span class="repo-clone-prompt">$</span>
+              <code class="repo-clone-cmd">git clone https://github.com/PicadoLabs/agent-bench.git</code>
+              <button class="copy repo-clone-copy" data-copy="git clone https://github.com/PicadoLabs/agent-bench.git" aria-label="Copy clone command">copy</button>
+            </div>
+
+            <div class="repo-card__actions">
+              <a class="btn btn--sm btn--solid" href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener">
+                <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub &rarr;
+              </a>
+              <a class="btn btn--sm btn--ghost" href="https://github.com/PicadoLabs/agent-bench/issues" target="_blank" rel="noopener">
+                Issues &rarr;
+              </a>
+              <a class="repo-card__doc-link" href="docs.html#agent-bench-overview">Docs &rarr;</a>
             </div>
           </div>
-          <div class="flow__arrow">&#8594;</div>
-          <div class="flow__step flow__step--green">
-            <div class="flow__num">03</div>
-            <div class="flow__body">
-              <strong>Terminal Agent Executes</strong>
-              <span>AST context ranking, 12 typed tools, process-tree sandbox, 12-category self-healing loop</span>
+
+          <!-- Card 3: Terminal Agent -->
+          <div class="repo-card repo-card--featured">
+            <div class="repo-card__top">
+              <span class="repo-card__step">02 &bull; EXECUTE &amp; VERIFY</span>
+              <span class="repo-card__license">MIT LICENSE</span>
             </div>
-          </div>
-          <div class="flow__arrow">&#8594;</div>
-          <div class="flow__step">
-            <div class="flow__num">04</div>
-            <div class="flow__body">
-              <strong>Verifier Confirms</strong>
-              <span>IndependentVerifier runs test suite in isolation — zero failures required before VERIFIED status</span>
+            
+            <div class="repo-card__head">
+              <h3 class="repo-card__name">Terminal Agent</h3>
+              <a class="repo-card__slug" href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener" aria-label="terminal-agent on GitHub">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>PicadoLabs/terminal-agent</span>
+              </a>
+            </div>
+
+            <p class="repo-card__desc">
+              Autonomous terminal agent loop with isolated psutil process sandbox, 12-category auto-recovery, and independent verification.
+            </p>
+
+            <div class="repo-card__badges">
+              <span class="repo-badge">Python</span>
+              <span class="repo-badge">12 CLI Tools</span>
+              <span class="repo-badge">psutil Sandbox</span>
+              <span class="repo-badge">SecretGuard</span>
+            </div>
+
+            <div class="repo-clone-box">
+              <span class="repo-clone-prompt">$</span>
+              <code class="repo-clone-cmd">git clone https://github.com/PicadoLabs/terminal-agent.git</code>
+              <button class="copy repo-clone-copy" data-copy="git clone https://github.com/PicadoLabs/terminal-agent.git" aria-label="Copy clone command">copy</button>
+            </div>
+
+            <div class="repo-card__actions">
+              <a class="btn btn--sm btn--solid" href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener">
+                <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub &rarr;
+              </a>
+              <a class="btn btn--sm btn--ghost" href="https://github.com/PicadoLabs/terminal-agent/issues" target="_blank" rel="noopener">
+                Issues &rarr;
+              </a>
+              <a class="repo-card__doc-link" href="docs.html#terminal-agent-overview">Docs &rarr;</a>
             </div>
           </div>
         </div>
 
-        <div class="grid grid--2 arch__notes">
-          <div>
-            <h3 class="tick">Model Router — the intelligence tier</h3>
-            <p>Inspects queries in &lt;3ms using deterministic regex heuristics (<code>heuristics.py</code>), evaluates custom conditional rule DAGs, hard-prunes context windows, and scores candidate models across 5 Pareto dimensions with automated 80%/95%/100% budget intervention guards.</p>
+        <!-- Community Callout Banner -->
+        <div class="community-banner">
+          <div class="community-banner__content">
+            <h3 class="community-banner__title">Want to contribute or build on Picado Labs?</h3>
+            <p class="community-banner__desc">
+              All code is open source under MIT. We welcome new benchmark tasks, model routing policies, runtime sandbox backends, and bug reports.
+            </p>
           </div>
-          <div>
-            <h3 class="tick">Terminal Agent &amp; Sandbox — the execution tier</h3>
-            <p>Generates formal Task Contracts (<code>TaskContractGenerator</code>), builds compact repository context with AST symbol ranking (<code>DeterministicRanker</code>), modifies code using 12 typed tools, and isolates processes with <code>psutil</code> tree termination.</p>
-          </div>
-          <div>
-            <h3 class="tick">AgentBench — the calibration tier</h3>
-            <p>Runs polyglot test harnesses (Python <code>pytest</code> and Node.js 22 <code>node --test</code>), scores agents across 5 weighted dimensions ($S \in [0, 100]$), ingests live GitHub PRs, and acts as an automated CI/CD gatekeeper before merge.</p>
-          </div>
-          <div>
-            <h3 class="tick">IndependentVerifier &amp; Checkpoints — the safety tier</h3>
-            <p>Prevents conversational hallucinations by demanding objective test passes and diff verification. Checkpoint manifests enable instant, zero-risk rollback to baseline states on unrecoverable failures.</p>
+          <div class="community-banner__actions">
+            <a class="btn btn--solid" href="https://github.com/PicadoLabs" target="_blank" rel="noopener">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Organization
+            </a>
+            <a class="btn btn--ghost" href="docs.html#quickstart">
+              Contribution Guide
+            </a>
+            <a class="btn btn--ghost" href="https://x.com/PicadoLabs" target="_blank" rel="noopener">
+              X (Twitter)
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ TERMINAL AGENT DEEP DIVE ============ -->
-    <section class="section" id="terminal-agent">
+    <!-- ============ 11 — FINAL MINIMAL CTA ============ -->
+    <section class="final-cta">
       <div class="wrap">
-        <h2 class="section__title">Terminal Agent</h2>
-        <p class="section__lede">Autonomous software engineering agent built on a verify-first architectural paradigm.</p>
-        <div class="badges">
-          <span class="badge">Python 3.10+</span>
-          <span class="badge">MIT License</span>
-          <span class="badge badge--green">Local-First</span>
-          <span class="badge badge--green">Ollama Ready</span>
-          <span class="badge">Verify-First</span>
-          <span class="badge">SQLite Persistence</span>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin: 16px 0 24px; flex-wrap: wrap;">
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener">
-            GitHub Repo &rarr;
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/terminal-agent/issues" target="_blank" rel="noopener">
-            Issue Tracker &rarr;
-          </a>
-        </div>
-
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__no">01</span>
-            <h3>Verify-First Engine</h3>
-            <p>Structural separation between agent hypotheses and verification. <code>IndependentVerifier</code> runs test suites in isolated sandboxes and confirms 0 failures before task completion.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">02</span>
-            <h3>Deterministic AST Ranker</h3>
-            <p>Scores repository files using AST symbol definitions (<code>def</code>, <code>class</code>, <code>function</code>, <code>interface</code>, <code>struct</code>), path matches (10x weight), and keyword frequency without vector DB overhead.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">03</span>
-            <h3>Process-Tree Sandbox</h3>
-            <p>Dual execution modes (<code>LocalSandbox</code> and <code>DockerSandbox</code>) with <code>psutil</code> recursive process-tree termination, preventing zombie child workers on timeouts.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">04</span>
-            <h3>12 Core Typed Tools</h3>
-            <p>Complete filesystem and git toolset: <code>read_file</code>, <code>write_file</code>, <code>edit_file</code>, <code>list_files</code>, <code>search_files</code>, <code>run_command</code>, <code>run_tests</code>, <code>git_status</code>, <code>git_diff</code>, <code>git_log</code>, <code>create_checkpoint</code>, <code>restore_checkpoint</code>.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">05</span>
-            <h3>SecretGuard &amp; Security</h3>
-            <p>5-tier command policy (<code>safe</code>, <code>write</code>, <code>destructive</code>, <code>network</code>, <code>privileged</code>) paired with Shannon entropy secret redaction and blocklists for <code>.env</code> and keys.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">06</span>
-            <h3>State &amp; Snapshot Rollback</h3>
-            <p>Atomic checkpoint snapshots (<code>.terminal_agent/checkpoints/</code>) and SQLite session persistence (<code>terminal_agent.db</code>) with instant rollback via CLI (<code>terminal-agent rollback</code>).</p>
-          </article>
-        </div>
-
-        <div style="margin-top: 36px;">
-          <h3 class="table__title">Terminal Agent CLI Commands</h3>
-          <div class="grid grid--2">
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Execution &amp; Verification</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> terminal-agent run "Fix auth token expiry"
-<span class="t-prompt">$</span> terminal-agent resume
-<span class="t-prompt">$</span> terminal-agent status
-<span class="t-prompt">$</span> terminal-agent diff
-<span class="t-prompt">$</span> terminal-agent test</code></pre>
-            </div>
-
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Checkpoints &amp; Diagnostics</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> terminal-agent checkpoint
-<span class="t-prompt">$</span> terminal-agent rollback &lt;id&gt;
-<span class="t-prompt">$</span> terminal-agent doctor
-<span class="t-prompt">$</span> terminal-agent config
-<span class="t-prompt">$</span> terminal-agent trace</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ AGENTBENCH DEEP DIVE ============ -->
-    <section class="section section--alt" id="agent-bench">
-      <div class="wrap">
-        <h2 class="section__title">AgentBench</h2>
-        <p class="section__lede">Provider-agnostic, local-first evaluation and benchmarking platform for autonomous coding agents.</p>
-        <div class="badges">
-          <span class="badge">Python 3.12</span>
-          <span class="badge">Node.js 22</span>
-          <span class="badge">MIT License</span>
-          <span class="badge badge--green">Local-First</span>
-          <span class="badge badge--green">Ollama Ready</span>
-          <span class="badge">12 Benchmarks</span>
-          <span class="badge">FastAPI + React</span>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin: 16px 0 24px; flex-wrap: wrap;">
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener">
-            GitHub Repo &rarr;
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/agent-bench/issues" target="_blank" rel="noopener">
-            Issue Tracker &rarr;
-          </a>
-        </div>
-
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__no">01</span>
-            <h3>12 Polyglot Tasks</h3>
-            <p>Standardized benchmarks across Python (<code>pytest</code>) and Node.js 22 (<code>node --test</code>) covering JWT authentication, pagination, rate limiters, SQL injection guards, LRU caches, and React leaks.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">02</span>
-            <h3>GitHub PR Ingestion</h3>
-            <p>Automated tool (<code>python agentbench.py ingest &lt;pr-url&gt;</code>) extracting issue descriptions, base commits, and patch diffs into standalone benchmark tasks in seconds.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">03</span>
-            <h3>Weighted Scoring Engine</h3>
-            <p>Mathematical composite score $S \in [0, 100]$: 50% Correctness, 25% Test Pass Rate, 10% Code Quality, 10% Efficiency, and 5% Reliability.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">04</span>
-            <h3>3 Agent Architectures</h3>
-            <p>Benchmark <code>IterativeCodingAgent</code> (ReAct with self-repair), <code>FastPatchAgent</code> (single-pass), and <code>BaselineAgent</code> (zero-shot) side-by-side.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">05</span>
-            <h3>Failure Taxonomy Classifier</h3>
-            <p>Categorizes non-passing runs into 7 root-cause buckets: <code>timeout</code>, <code>syntax_error</code>, <code>permission_error</code>, <code>dependency_issue</code>, <code>test_failure</code>, <code>incomplete_solution</code>, <code>command_failure</code>.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">06</span>
-            <h3>CI/CD PR Gatekeeper</h3>
-            <p>GitHub Action (<code>.github/workflows/agentbench-eval.yml</code>) evaluating coding agents in CI runners and posting evaluation matrices directly to PRs.</p>
-          </article>
-        </div>
-        <div style="margin-top: 36px;">
-          <h3 class="table__title">AgentBench CLI Commands</h3>
-          <div class="grid grid--2">
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Evaluation &amp; Ingestion</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> python agentbench.py doctor
-<span class="t-prompt">$</span> python agentbench.py list
-<span class="t-prompt">$</span> python agentbench.py ingest &lt;pr-url&gt;
-<span class="t-prompt">$</span> python agentbench.py run --benchmark feat-express-auth</code></pre>
-            </div>
-
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Analysis &amp; Leaderboards</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> python agentbench.py inspect RUN-0003
-<span class="t-prompt">$</span> python agentbench.py leaderboard
-<span class="t-prompt">$</span> python agentbench.py compare RUN-0002 RUN-0003
-<span class="t-prompt">$</span> python agentbench.py serve --port 8000</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ MODEL ROUTER DEEP DIVE ============ -->
-    <section class="section" id="model-router">
-      <div class="wrap">
-        <h2 class="section__title">Model Router</h2>
-        <p class="section__lede">Sub-3ms explainable LLM traffic control room and multi-criteria Pareto gateway.</p>
-        <div class="badges">
-          <span class="badge">Python 3.12</span>
-          <span class="badge">MIT License</span>
-          <span class="badge badge--green">Local-First</span>
-          <span class="badge badge--green">Ollama Ready</span>
-          <span class="badge badge--purple">&lt;3ms Routing</span>
-          <span class="badge">FastAPI + React</span>
-          <span class="badge">15 Pytest Tests</span>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin: 16px 0 24px; flex-wrap: wrap;">
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">
-            GitHub Repo &rarr;
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">
-            Issue Tracker &rarr;
-          </a>
-        </div>
-
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__no">01</span>
-            <h3>Sub-3ms Heuristics</h3>
-            <p>Deterministic regex and keyword feature extraction classifying 12 task types, numerical complexity (0.05-0.99), and context size with sub-3ms routing overhead.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">02</span>
-            <h3>5-Criteria Pareto Matrix</h3>
-            <p>Computes normalized scores across Quality, Cost Efficiency, Latency Speed, Required Capabilities, and Historical Provider Reliability.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">03</span>
-            <h3>Explainability Reports</h3>
-            <p>100% auditable "Why this model?" explainability factor breakdown and itemized candidate rejection logs (e.g. context window overflow, missing flags).</p>
-          </article>
-          <article class="card">
-            <span class="card__no">04</span>
-            <h3>Budget Intervention Guards</h3>
-            <p>FinOps controls: 80% monthly spend triggers cost optimization, 95% forces local Ollama inference, and 100% triggers hard request blocking.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">05</span>
-            <h3>Tiered Fallback Supervisor</h3>
-            <p>Classifies retryable HTTP errors (429 rate limit, 503 outage) and automatically cascades failed calls to backup models or local fail-safes.</p>
-          </article>
-          <article class="card">
-            <span class="card__no">06</span>
-            <h3>AI Traffic Control Room</h3>
-            <p>Real-time FastAPI + React dashboard with live Server-Sent Events (SSE), visual block rules builder, and baseline cost savings simulator.</p>
-          </article>
-        </div>
-        <div style="margin-top: 36px;">
-          <h3 class="table__title">Model Router CLI Commands</h3>
-          <div class="grid grid--2">
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Routing &amp; Execution</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> modelrouter doctor
-<span class="t-prompt">$</span> modelrouter route "Debug async queue deadlock"
-<span class="t-prompt">$</span> modelrouter run "Write unit tests for auth"
-<span class="t-prompt">$</span> modelrouter serve --port 8000</code></pre>
-            </div>
-
-            <div class="cmd-box">
-              <div class="cmd-box__header">
-                <span class="cmd-box__title">Traffic &amp; Telemetry</span>
-                <button class="cmd-box__copy" aria-label="Copy commands" title="Copy Commands">
-                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy</span>
-                </button>
-              </div>
-              <pre class="cmd-box__body"><code><span class="t-prompt">$</span> modelrouter models
-<span class="t-prompt">$</span> modelrouter traffic --stream
-<span class="t-prompt">$</span> modelrouter analytics
-<span class="t-prompt">$</span> modelrouter block add --pattern "DROP TABLE"</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ BENCHMARKS TABLE & COMPARISON ============ -->
-    <section class="section section--alt" id="benchmarks">
-      <div class="wrap">
-        <h2 class="section__title">12 Polyglot Benchmarks &amp; Matrix</h2>
-        <p class="section__lede">
-          Calibrating autonomous AI coding agents on realistic, multi-file software engineering tasks across Python and Node.js.
-        </p>
-
-        <h3 class="table__title">Standardized Software Engineering Benchmark Suite</h3>
-        <div class="table__scroll">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Task ID</th>
-                <th>Task Description</th>
-                <th>Stack</th>
-                <th>Category</th>
-                <th>Difficulty</th>
-                <th>Evaluation Focus</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="is-best">
-                <td><code>fix-auth-jwt</code></td>
-                <td>Fix JWT Authentication &amp; Token Security</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Medium</td>
-                <td>Algorithm confusion (<code>alg: none</code>), expired signatures, secret validation</td>
-              </tr>
-              <tr>
-                <td><code>feat-fastapi-pagination</code></td>
-                <td>Implement API Pagination &amp; Bounds</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--feat">Feature</span></td>
-                <td>Easy</td>
-                <td>Zero-indexed page math, slicing bounds, total count metadata</td>
-              </tr>
-              <tr>
-                <td><code>fix-rate-limiter</code></td>
-                <td>Fix Sliding Window Rate Limiter Logic</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Easy</td>
-                <td>Timestamp window pruning, sliding window boundaries, burst rejection</td>
-              </tr>
-              <tr>
-                <td><code>fix-sql-builder</code></td>
-                <td>Parameterized SQL Query Builder</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Easy</td>
-                <td>SQL injection vulnerability elimination with <code>?</code> placeholders</td>
-              </tr>
-              <tr>
-                <td><code>fix-lru-ttl-cache</code></td>
-                <td>LRU Cache with TTL Expiration</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Medium</td>
-                <td>Dual-policy eviction: time-to-live expiration and LRU ordering</td>
-              </tr>
-              <tr>
-                <td><code>fix-csv-pipeline</code></td>
-                <td>Data Pipeline Ingestion &amp; Cleaners</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Medium</td>
-                <td>Corrupt timestamps, zero-division guard, negative value filters</td>
-              </tr>
-              <tr>
-                <td><code>refactor-tree-serializer</code></td>
-                <td>Refactor Tree Serializer with Cycle Detection</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--refactor">Refactoring</span></td>
-                <td>Medium</td>
-                <td>Cycle detection in graph structures to prevent stack overflows</td>
-              </tr>
-              <tr>
-                <td><code>feat-config-loader</code></td>
-                <td>Typed Configuration Loader &amp; Env Overrides</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--feat">Feature</span></td>
-                <td>Easy</td>
-                <td>Type coercion (strings to int/bool) and environment variable precedence</td>
-              </tr>
-              <tr>
-                <td><code>debug-async-queue</code></td>
-                <td>Async Task Queue Worker &amp; Heartbeats</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--debug">Debugging</span></td>
-                <td>Medium</td>
-                <td>Dead-worker heartbeat timeout detection, unacknowledged requeueing</td>
-              </tr>
-              <tr>
-                <td><code>debug-markdown-parser</code></td>
-                <td>Markdown Link &amp; Image AST Parser</td>
-                <td><span class="tag tag--python">Python</span></td>
-                <td><span class="tag tag--debug">Debugging</span></td>
-                <td>Easy</td>
-                <td>Regex token extraction into structured Abstract Syntax Tree nodes</td>
-              </tr>
-              <tr>
-                <td><code>feat-express-auth</code></td>
-                <td>Express Auth &amp; Token-Bucket Limiter</td>
-                <td><span class="tag tag--node">Node.js</span></td>
-                <td><span class="tag tag--feat">Feature</span></td>
-                <td>Medium</td>
-                <td>Bearer token validation and token-bucket middleware</td>
-              </tr>
-              <tr>
-                <td><code>fix-react-hook-leak</code></td>
-                <td>Fix React Hook Event &amp; Timer Memory Leak</td>
-                <td><span class="tag tag--node">React / Node</span></td>
-                <td><span class="tag tag--bug">Bug Fixing</span></td>
-                <td>Medium</td>
-                <td>Dangling event listeners and uncleared <code>setInterval</code> timers</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 class="table__title" style="margin-top:44px;">Architectural Comparison: Traditional vs Picado Labs</h3>
-        <div class="table__scroll">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Dimension</th>
-                <th>Traditional AI Wrappers</th>
-                <th>Standard Coding Assistants</th>
-                <th>Picado Labs Suite</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="is-best">
-                <td>Completion Verification</td>
-                <td>LLM self-report (High hallucination)</td>
-                <td>User-prompted test reflection</td>
-                <td>Independent Verifier in isolated sandbox</td>
-              </tr>
-              <tr>
-                <td>Security &amp; Sandboxing</td>
-                <td>Direct host execution, zero bounds</td>
-                <td>Manual confirmation prompts only</td>
-                <td>5-tier policy, psutil process tree kill, SecretGuard</td>
-              </tr>
-              <tr>
-                <td>Context Management</td>
-                <td>Raw prompt dumping / overflow</td>
-                <td>Grep / basic ctags</td>
-                <td>DeterministicRanker (AST symbols, sub-second)</td>
-              </tr>
-              <tr>
-                <td>Failure Recovery</td>
-                <td>Generic "try again" loop</td>
-                <td>Manual developer intervention</td>
-                <td>12-category classification + Checkpoint rollback</td>
-              </tr>
-              <tr>
-                <td>LLM Traffic Routing</td>
-                <td>Hardcoded single model</td>
-                <td>Manual dropdown selector</td>
-                <td>&lt;3ms Pareto routing (Quality/Cost/Speed)</td>
-              </tr>
-              <tr>
-                <td>Local / Offline Cost</td>
-                <td>Cloud API credits required</td>
-                <td>Subscription locked</td>
-                <td>$0.00 native local inference with Ollama</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- REAL-DATA ARCHITECTURE & TELEMETRY CHARTS -->
-        <div class="charts-wrap">
-          <h3 class="table__title" style="margin-top: 48px;">Verified System Metrics &amp; Performance Telemetry</h3>
-          <p class="section__lede" style="margin-bottom: 24px;">
-            Auditable mathematical distributions and measured latency budgets derived directly from the system architectures and benchmark specifications.
-          </p>
-
-          <div class="charts-grid">
-            <!-- Chart 1: AgentBench Composite Scoring -->
-            <div class="chart-card">
-              <div class="chart-card__head">
-                <div class="chart-card__title-group">
-                  <h4>AgentBench Composite Scoring Function</h4>
-                  <p class="chart-card__subtitle">Mathematical weight distribution for evaluating agent submissions (S &isin; [0, 100])</p>
-                </div>
-                <span class="chart-card__badge">Deterministic</span>
-              </div>
-
-              <div class="chart-bars">
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Correctness (C) &bull; AST &amp; Functional Output</span>
-                    <span class="chart-bar__num">50% Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--green" style="width: 50%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Pass Rate (P) &bull; Isolated Unit Test Runner</span>
-                    <span class="chart-bar__num">25% Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--teal" style="width: 25%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Code Quality (Q) &bull; Linter &amp; Complexity Bounds</span>
-                    <span class="chart-bar__num">10% Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--blue" style="width: 10%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Efficiency (E) &bull; Steps &amp; Token Budget</span>
-                    <span class="chart-bar__num">10% Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--amber" style="width: 10%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Reliability (R) &bull; Seed Stability &amp; Determinism</span>
-                    <span class="chart-bar__num">5% Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--purple" style="width: 5%;"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="chart-callout">
-                <strong>Formula:</strong> <code>S = 0.50(C) + 0.25(P) + 0.10(Q) + 0.10(E) + 0.05(R)</code>. Guarantees 0-hallucination scoring with strict zero-division guards.
-              </div>
-            </div>
-
-            <!-- Chart 2: Sub-3ms Routing Latency Breakdown -->
-            <div class="chart-card">
-              <div class="chart-card__head">
-                <div class="chart-card__title-group">
-                  <h4>Model Router Latency Budget &bull; Measured vs Cloud</h4>
-                  <p class="chart-card__subtitle">Sub-3ms deterministic routing pipeline vs recursive cloud proxy roundtrips</p>
-                </div>
-                <span class="chart-card__badge chart-card__badge--blue">&lt;3.0ms SLA</span>
-              </div>
-
-              <div class="chart-bars">
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Regex &amp; Keyword Heuristics (Task Classifier)</span>
-                    <span class="chart-bar__num">1.8ms (Target &lt;2.5ms)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--green" style="width: 60%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">5-Dimension In-Memory Pareto Scoring</span>
-                    <span class="chart-bar__num">0.4ms (Target &lt;0.5ms)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--teal" style="width: 13.3%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Hard-Constraint Pruner (Context &amp; Flag Filter)</span>
-                    <span class="chart-bar__num">0.2ms (Target &lt;0.3ms)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--blue" style="width: 6.7%;"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="chart-stats-row">
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val">2.4ms</span>
-                  <span class="chart-stat-lbl">Picado Total</span>
-                </div>
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val" style="color: #b91c1c;">450ms</span>
-                  <span class="chart-stat-lbl">Cloud LLM Proxy</span>
-                </div>
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val">187&times;</span>
-                  <span class="chart-stat-lbl">Routing Speedup</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Chart 3: Model Router 5 Pareto Criteria -->
-            <div class="chart-card">
-              <div class="chart-card__head">
-                <div class="chart-card__title-group">
-                  <h4>Model Router Multi-Objective Pareto Criteria</h4>
-                  <p class="chart-card__subtitle">Normalized criteria balancing quality, latency, token cost, and provider uptime</p>
-                </div>
-                <span class="chart-card__badge chart-card__badge--purple">5-Dimension</span>
-              </div>
-
-              <div class="chart-bars">
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Quality Dimension &bull; Coding &amp; Reasoning Benchmarks</span>
-                    <span class="chart-bar__num">0.35 Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--green" style="width: 35%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Cost Efficiency &bull; $ / 1k In+Out Tokens ($0 for Ollama)</span>
-                    <span class="chart-bar__num">0.25 Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--teal" style="width: 25%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Latency &amp; Throughput &bull; Queue + Tokens / Second</span>
-                    <span class="chart-bar__num">0.20 Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--blue" style="width: 20%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Capabilities &bull; Tool Calling, JSON Schema, Context Window</span>
-                    <span class="chart-bar__num">0.10 Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--amber" style="width: 10%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Provider Reliability &bull; Historical Uptime &amp; Error Rate</span>
-                    <span class="chart-bar__num">0.10 Weight</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--purple" style="width: 10%;"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="chart-callout">
-                <strong>FinOps Circuit Breakers:</strong> Spend &ge; 80% prioritizes cost; &ge; 95% forces local Ollama; 100% hard rejects paid requests.
-              </div>
-            </div>
-
-            <!-- Chart 4: AgentBench Benchmark Task Suite Distribution -->
-            <div class="chart-card">
-              <div class="chart-card__head">
-                <div class="chart-card__title-group">
-                  <h4>AgentBench 12-Task Suite Distribution</h4>
-                  <p class="chart-card__subtitle">Polyglot multi-file challenge composition across engineering domains</p>
-                </div>
-                <span class="chart-card__badge">12 Tasks</span>
-              </div>
-
-              <div class="chart-bars">
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Bug Fixing &bull; JWT, Rate Limiter, SQL, LRU TTL, React Leak, CSV</span>
-                    <span class="chart-bar__num">6 Tasks (50%)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--rose" style="width: 50%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Debugging &bull; Async Deadlock, Markdown AST Parser</span>
-                    <span class="chart-bar__num">3 Tasks (25%)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--amber" style="width: 25%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Feature Implementation &bull; API Pagination, Express Auth</span>
-                    <span class="chart-bar__num">2 Tasks (17%)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--blue" style="width: 17%;"></div>
-                  </div>
-                </div>
-
-                <div class="chart-bar">
-                  <div class="chart-bar__meta">
-                    <span class="chart-bar__name">Refactoring &bull; Tree Serializer with Cycle Detection</span>
-                    <span class="chart-bar__num">1 Task (8%)</span>
-                  </div>
-                  <div class="chart-bar__track">
-                    <div class="chart-bar__fill chart-bar__fill--purple" style="width: 8%;"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="chart-stats-row">
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val">9 Tasks</span>
-                  <span class="chart-stat-lbl">Python (75%)</span>
-                </div>
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val">3 Tasks</span>
-                  <span class="chart-stat-lbl">Node.js (25%)</span>
-                </div>
-                <div class="chart-stat-box">
-                  <span class="chart-stat-val">7 Bins</span>
-                  <span class="chart-stat-lbl">Failure Taxonomy</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CODE / DOCS TABS ============ -->
-    <section class="section" id="code">
-      <div class="wrap">
-        <h2 class="section__title">Open source. Local-first. Production-grade.</h2>
-        <p class="section__lede">Clean, explicit architecture across Python, Node.js, and React — built to run locally at zero cost and connect to any cloud provider.</p>
-
-        <div class="tabs" data-tabs>
-          <div class="tabs__list" role="tablist" aria-label="Examples">
-            <button class="tab is-active" role="tab" aria-selected="true" data-tab="t-terminal">Terminal Agent</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="t-router">Model Router</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="t-bench">AgentBench Ingest</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="t-sandbox">Sandboxing &amp; Security</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="t-budget">Budget Guards</button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="t-recovery">12-Category Recovery</button>
-          </div>
-
-          <div class="tabs__panels">
-            <!-- Tab 1: Terminal Agent -->
-            <pre class="code" id="t-terminal" role="tabpanel"><code>from terminal_agent.agent.loop import AgentLoop
-from terminal_agent.config import TerminalAgentConfig
-from terminal_agent.verifier.engine import IndependentVerifier
-from terminal_agent.providers.ollama_provider import OllamaProvider
-
-cfg = TerminalAgentConfig(
-    provider="ollama",
-    model="qwen2.5-coder:1.5b",
-    sandbox="local",
-    max_retries=3,
-    auto_rollback_on_failure=True,
-)
-
-# Run autonomous verify-first coding session
-loop = AgentLoop(config=cfg, provider=OllamaProvider(model=cfg.model))
-session = loop.run(task_description="Fix JWT expiry leeway in src/auth/jwt.py")
-
-if session.status == "VERIFIED":
-    print("Task completed and verified by IndependentVerifier!")
-    print("Modified files:", session.diff_summary)</code></pre>
-
-            <!-- Tab 2: Model Router -->
-            <pre class="code is-hidden" id="t-router" role="tabpanel"><code>from model_router.router.engine import RoutingEngine
-from model_router.analyzer.heuristics import analyze_request
-
-# Sub-3ms prompt classification & Pareto candidate scoring
-analysis = analyze_request("Debug distributed async queue deadlock in Celery")
-engine = RoutingEngine()
-
-decision = engine.route(
-    prompt="Debug distributed async queue deadlock in Celery",
-    policy="balanced",          # quality | cost | speed | balanced
-    analysis=analysis
-)
-
-print(f"Selected: {decision.selected_model.id} (Score: {decision.score:.1f})")
-print(f"Why this model? {decision.explanation}")
-print(f"Disqualified candidates: {decision.rejection_reasons}")</code></pre>
-
-            <!-- Tab 3: AgentBench -->
-            <pre class="code is-hidden" id="t-bench" role="tabpanel"><code>from agentbench.runner import BenchmarkRunner
-from agentbench.ingest.github import ingest_github_pr
-
-# Ingest any live GitHub Pull Request into an evaluation task
-task = ingest_github_pr("https://github.com/fastapi/fastapi/pull/1234")
-
-# Run polyglot test harness and compute weighted score
-runner = BenchmarkRunner(provider="ollama", model="deepseek-r1:1.5b")
-result = runner.execute(task.id)
-
-print(f"AgentBench Score: {result.score:.1f} / 100")
-print(f"Passed Tests: {result.passed_tests} / {result.total_tests}")
-print(f"Failure Taxonomy: {result.failure_category}")</code></pre>
-
-            <!-- Tab 4: Sandboxing -->
-            <pre class="code is-hidden" id="t-sandbox" role="tabpanel"><code>from terminal_agent.sandbox.local import LocalSandbox
-from terminal_agent.security.secrets import SecretGuard
-from terminal_agent.security.policy import SecurityPolicyEnforcer
-
-guard = SecretGuard()
-sanitized_output = guard.scan_and_redact(raw_output)
-
-# Strict process-tree termination with psutil
-sandbox = LocalSandbox(timeout=30)
-result = sandbox.execute("pytest tests/test_auth.py")
-
-print("Exit code:", result.exit_code)
-print("Sanitized stdout:", guard.scan_and_redact(result.stdout))</code></pre>
-
-            <!-- Tab 5: Budget Guards -->
-            <pre class="code is-hidden" id="t-budget" role="tabpanel"><code>from model_router.budgets.manager import BudgetManager
-
-manager = BudgetManager(monthly_limit_usd=50.0)
-
-# Check spend before dispatch
-status = manager.check_threshold(current_spend_usd=42.5)
-
-if status.intervention == "OPTIMIZE_COST":
-    # 80% threshold reached -> Force high-cost weight in Pareto matrix
-    active_policy = "cost_saving"
-elif status.intervention == "FORCE_LOCAL":
-    # 95% threshold reached -> Strictly local Ollama models ($0.00)
-    active_policy = "local_only"</code></pre>
-
-            <!-- Tab 6: Recovery -->
-            <pre class="code is-hidden" id="t-recovery" role="tabpanel"><code>from terminal_agent.recovery.classifier import FailureClassifier
-from terminal_agent.checkpoints.manager import CheckpointManager
-
-classifier = FailureClassifier()
-category, diagnosis = classifier.classify(test_stderr, exit_code=1, timed_out=False)
-
-if category == "SYNTAX_ERROR":
-    # Inject AST error location into LLM prompt
-    recovery_prompt = f"Fix syntax error at line {diagnosis.line_number}"
-elif category == "TEST_FAILURE":
-    # Inject exact failing assertion and stack trace
-    recovery_prompt = f"Failing assertion: {diagnosis.assertion_text}"</code></pre>
-          </div>
-        </div>
-
-        <div class="features">
-          <h3 class="features__title">Everything in the box</h3>
-          <ul class="features__grid">
-            <li>Verify-First autonomous loop with IndependentVerifier</li>
-            <li>Sub-3ms deterministic heuristics request analyzer</li>
-            <li>5-criteria Pareto objective scoring function</li>
-            <li>12 Standardized SWE benchmarks in Python &amp; Node.js</li>
-            <li>GitHub PR and Issue automated ingestion engine</li>
-            <li>LocalProcessSandbox with psutil process-tree cleanup</li>
-            <li>SecretGuard with Shannon entropy &amp; API token redaction</li>
-            <li>12-Category automated failure recovery taxonomy</li>
-            <li>Instant atomic snapshot checkpoints &amp; rollback</li>
-            <li>Budget intervention guards (80%, 95%, 100% thresholds)</li>
-            <li>100% local-first inference via Ollama at $0.00 API cost</li>
-            <li>Multi-provider adapters: OpenAI, Anthropic, Gemini, Mock</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTRIBUTE / COMMUNITY ============ -->
-    <section class="section section--alt" id="contribute">
-      <div class="wrap">
-        <h2 class="section__title">Contribute &amp; Community</h2>
-        <p class="section__lede">Picado Labs is open-source, local-first, and community-driven. All issues, PRs, and benchmark submissions are welcome.</p>
-
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__no">01</span>
-            <h3>Repositories &amp; Issue Trackers</h3>
-            <p>Direct access to source code, issue trackers, and test harnesses across all three systems:</p>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 13.5px;">
-              <div>
-                <strong>Terminal Agent</strong><br />
-                <a class="link" href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener">Source Repository &rarr;</a> &bull;
-                <a class="link" href="https://github.com/PicadoLabs/terminal-agent/issues" target="_blank" rel="noopener">Issues Tracker &rarr;</a>
-              </div>
-              <div>
-                <strong>AgentBench</strong><br />
-                <a class="link" href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener">Source Repository &rarr;</a> &bull;
-                <a class="link" href="https://github.com/PicadoLabs/agent-bench/issues" target="_blank" rel="noopener">Issues Tracker &rarr;</a>
-              </div>
-              <div>
-                <strong>Model Router</strong><br />
-                <a class="link" href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">Source Repository &rarr;</a> &bull;
-                <a class="link" href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">Issues Tracker &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="card__no">02</span>
-            <h3>Community &amp; Social Channels</h3>
-            <p>Join the conversation, follow updates, and star the organization:</p>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 13.5px;">
-              <div>
-                <strong>Official X / Twitter</strong><br />
-                <a class="link" href="https://x.com/PicadoLabs" target="_blank" rel="noopener">@PicadoLabs on X &rarr;</a>
-              </div>
-              <div>
-                <strong>GitHub Organization</strong><br />
-                <a class="link" href="https://github.com/PicadoLabs" target="_blank" rel="noopener">github.com/PicadoLabs &rarr;</a>
-              </div>
-              <div>
-                <strong>Official Email</strong><br />
-                <a class="link" href="mailto:picadolabs@gmail.com">picadolabs@gmail.com &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="card__no">03</span>
-            <h3>Founder &amp; Maintainer</h3>
-            <p>Connect directly with the creator and core maintainer of Picado Labs:</p>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 13.5px;">
-              <div>
-                <strong>Founder X / Twitter</strong><br />
-                <a class="link" href="https://x.com/Kap10x" target="_blank" rel="noopener">@Kap10x on X &rarr;</a>
-              </div>
-              <div>
-                <strong>Founder &amp; Maintainer GitHub</strong><br />
-                <a class="link" href="https://github.com/Kaap10" target="_blank" rel="noopener">@Kaap10 on GitHub &rarr;</a>
-              </div>
-              <div>
-                <strong>Website &amp; Specs</strong><br />
-                <a class="link" href="https://picadolabs.me" target="_blank" rel="noopener">picadolabs.me &rarr;</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TECH STACK STRIP ============ -->
-    <section class="tech-strip" aria-label="Core Technologies">
-      <div class="wrap">
-        <p class="tech-strip__eyebrow">Engineered with modern, local-first open source technologies</p>
-        <div class="tech-strip__grid">
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M11.914 0C5.82 0 6.2 2.65 6.2 2.65l.006 2.744h5.81v.824H3.882s-3.882.44-3.882 5.8c0 5.362 3.39 5.22 3.39 5.22h2.024v-2.84s-.11-3.39 3.33-3.39h5.73s3.23.05 3.23-3.13V2.65S18.15 0 11.914 0zm-3.23 1.69a1.01 1.01 0 1 1 0 2.02 1.01 1.01 0 0 1 0-2.02zm3.4 22.31c6.094 0 5.714-2.65 5.714-2.65l-.006-2.744h-5.81v-.824h8.134s3.882-.44 3.882-5.8c0-5.362-3.39-5.22-3.39-5.22h-2.024v2.84s.11 3.39-3.33 3.39h-5.73s-3.23-.05-3.23 3.13v5.224s-.44 2.65 5.794 2.65zm3.23-1.69a1.01 1.01 0 1 1 0-2.02 1.01 1.01 0 0 1 0 2.02z"/>
-            </svg>
-            <span>Python 3.12</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 0a12 12 0 0 0-1.8 23.86c-.1-.7-.16-1.57-.16-2.52 0-3.9 1.63-7.23 4.2-9.75a13.3 13.3 0 0 1-5.18 1.08c-3.1 0-5.96-1.12-8.15-3A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/>
-            </svg>
-            <span>FastAPI</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 1.6c-4.4 0-8 3.6-8 8 0 2.6 1.3 4.9 3.2 6.3L6 20.4c-.2.6.2 1.2.9 1.2h10.2c.6 0 1.1-.6.9-1.2l-1.2-4.5c2-1.4 3.2-3.7 3.2-6.3 0-4.4-3.6-8-8-8zm-2.5 10a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
-            <span>Ollama</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 0L1.75 6v12L12 24l10.25-6V6L12 0zm-1.25 18.5v-7.25L4.5 7.63v7.24l6.25 3.63zm2.5 0l6.25-3.63V7.63l-6.25 3.62v7.25zm0-9.87l6.08-3.52L12 1.68 4.67 5.11l6.08 3.52z"/>
-            </svg>
-            <span>Node.js 22</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm9.7-1.5c-.3 2.1-1.8 4.1-4 5.3-2.1 1.2-4.5 1.5-6.5.9-.6 1.1-1.3 2-2.1 2.6-1.5 1.1-3 1.1-3.9.4-.9-.7-.9-2.1-.2-3.7.8-1.7 2.3-3.4 4.2-4.7-.1-.6-.2-1.3-.2-1.9 0-.6.1-1.3.2-1.9-1.9-1.3-3.4-3-4.2-4.7-.7-1.6-.7-3 .2-3.7.9-.7 2.4-.7 3.9.4.8.6 1.5 1.5 2.1 2.6 2-.6 4.4-.3 6.5.9 2.2 1.2 3.7 3.2 4 5.3.1.5.1 1 0 1.5.1.5.1 1 0 1.5z"/>
-            </svg>
-            <span>React 18</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.8 2.3c-.6-.4-1.3-.3-1.8.2L12 7.5 7 2.5c-.5-.5-1.2-.6-1.8-.2-.6.4-.8 1.1-.6 1.8l2.5 7.1-5.8 5.8c-.8.8-.8 2 0 2.8.8.8 2 .8 2.8 0l5.8-5.8 7.1 2.5c.7.2 1.4 0 1.8-.6.4-.6.3-1.3-.2-1.8L13.6 9l5-5c.5-.5.6-1.2.2-1.7z"/>
-            </svg>
-            <span>Pytest</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 4.02 2 6.5v11C2 19.98 6.48 22 12 22s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2.2c4.61 0 8 1.53 8 2.3s-3.39 2.3-8 2.3-8-1.53-8-2.3 3.39-2.3 8-2.3zm0 15.6c-4.61 0-8-1.53-8-2.3v-2.1c1.9 1.15 4.8 1.9 8 1.9s6.1-.75 8-1.9v2.1c0 .77-3.39 2.3-8 2.3zm0-5.5c-4.61 0-8-1.53-8-2.3v-2.1c1.9 1.15 4.8 1.9 8 1.9s6.1-.75 8-1.9v2.1c0 .77-3.39 2.3-8 2.3z"/>
-            </svg>
-            <span>SQLite WAL</span>
-          </div>
-          <div class="tech-item">
-            <svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M13.98 10.02h2.26v2.26h-2.26v-2.26zm-3.39 0h2.26v2.26h-2.26v-2.26zm-3.39 0h2.26v2.26H7.2v-2.26zm10.17 0h2.26v2.26h-2.26v-2.26zm-6.78-3.39h2.26v2.26h-2.26V6.63zm-3.39 0h2.26v2.26H7.2V6.63zm6.78 0h2.26v2.26h-2.26V6.63zm-3.39-3.39h2.26v2.26h-2.26V3.24zm13.11 9.38c-.37-.23-.88-.3-1.44-.22-.32.05-.66.17-.98.36-.2-.42-.55-.78-1.04-1.02-.75-.37-1.63-.35-2.29.07-.15-.46-.46-.86-.9-1.12-1.07-.63-2.4-.41-3.23.51-.23-.1-.48-.16-.74-.18H1.36c-.46 0-.84.38-.84.84v4.52c0 3.73 3.03 6.76 6.76 6.76h9.94c3.48 0 6.32-2.65 6.64-6.07.03-.31.04-.63.04-.95 0-1.15-.36-2.31-1.08-3.09z"/>
-            </svg>
-            <span>Docker</span>
-          </div>
+        <h2 class="final-cta__title">Build. Verify. Ship.</h2>
+        <p class="final-cta__desc">Explore the stack and build with us.</p>
+        <div class="final-cta__btns">
+          <a class="btn btn--solid" href="#model-router">Start with Model Router</a>
+          <a class="btn btn--ghost" href="https://github.com/PicadoLabs" target="_blank" rel="noopener">Explore GitHub</a>
         </div>
       </div>
     </section>
@@ -1462,19 +802,19 @@ elif category == "TEST_FAILURE":
               <span class="brand__picado" style="color: #ffffff;">Picado</span><span class="brand__labs" style="color: var(--brand-green);">Labs</span>
             </span>
           </a>
-          <p class="footer__tag">Cooking up tools for building, testing, and routing autonomous AI agents.</p>
-          <div class="footer__slogan">IDEAS / AGENTS / IMPACT</div>
+          <p class="footer__tag">Open-source infrastructure for AI coding agents.</p>
+          <div class="footer__slogan">BUILD / VERIFY / SHIP</div>
         </div>
 
         <!-- Systems Column -->
         <div class="footer__col">
           <h4 class="footer__heading">Systems</h4>
           <ul class="footer__list">
+            <li><a href="#model-router">Model Router</a></li>
             <li><a href="#terminal-agent">Terminal Agent</a></li>
             <li><a href="#agent-bench">AgentBench</a></li>
-            <li><a href="#model-router">Model Router</a></li>
-            <li><a href="#benchmarks">12 Benchmarks</a></li>
-            <li><a href="#code">Code Studio</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="docs.html">Documentation</a></li>
           </ul>
         </div>
 
@@ -1482,9 +822,9 @@ elif category == "TEST_FAILURE":
         <div class="footer__col">
           <h4 class="footer__heading">Repositories</h4>
           <ul class="footer__list">
+            <li><a href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">ai-model-router</a></li>
             <li><a href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener">terminal-agent</a></li>
             <li><a href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener">agent-bench</a></li>
-            <li><a href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener">ai-model-router</a></li>
             <li><a href="https://github.com/PicadoLabs" target="_blank" rel="noopener">GitHub Organization</a></li>
           </ul>
         </div>
@@ -1493,14 +833,14 @@ elif category == "TEST_FAILURE":
         <div class="footer__col">
           <h4 class="footer__heading">Issue Trackers</h4>
           <ul class="footer__list">
+            <li><a href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">ai-model-router / issues</a></li>
             <li><a href="https://github.com/PicadoLabs/terminal-agent/issues" target="_blank" rel="noopener">terminal-agent / issues</a></li>
             <li><a href="https://github.com/PicadoLabs/agent-bench/issues" target="_blank" rel="noopener">agent-bench / issues</a></li>
-            <li><a href="https://github.com/PicadoLabs/ai-model-router/issues" target="_blank" rel="noopener">ai-model-router / issues</a></li>
             <li><a href="mailto:picadolabs@gmail.com">Email Bug Report</a></li>
           </ul>
         </div>
 
-        <!-- Community & Maintainer Column -->
+        <!-- Community Column -->
         <div class="footer__col">
           <h4 class="footer__heading">Community</h4>
           <ul class="footer__list">
@@ -1515,16 +855,18 @@ elif category == "TEST_FAILURE":
       <!-- Footer Bottom Bar -->
       <div class="footer__bottom">
         <div class="footer__legal">
-          <span>MIT License &bull; 100% Local-First Open Source</span>
+          <span>MIT License &bull; Local-First Open Source</span>
         </div>
         <div class="footer__meta">
           <a href="https://picadolabs.me">picadolabs.me</a>
           <span class="footer__dot-sep">&bull;</span>
-          <span>Build</span>
+          <span>Route</span>
+          <span class="footer__dot-sep">&bull;</span>
+          <span>Execute</span>
           <span class="footer__dot-sep">&bull;</span>
           <span>Verify</span>
           <span class="footer__dot-sep">&bull;</span>
-          <span>Ship</span>
+          <span>Evaluate</span>
         </div>
       </div>
     </div>
