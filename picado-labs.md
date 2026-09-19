@@ -8,7 +8,7 @@
 
 [![GitHub Org](https://img.shields.io/badge/GitHub-PicadoLabs-181717?style=flat-square&logo=github)](https://github.com/PicadoLabs)
 [![Website](https://img.shields.io/badge/Website-picadolabs.me-2e7d58?style=flat-square)](https://picadolabs.me)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![X](https://img.shields.io/badge/X-@PicadoLabs-000000?style=flat-square&logo=x)](https://x.com/PicadoLabs)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Picado_Labs-0077b5?style=flat-square&logo=linkedin)](https://www.linkedin.com/company/picado-labs/)
 
@@ -91,7 +91,7 @@ $$\textbf{PLAN} \longrightarrow \textbf{ROUTE} \longrightarrow \textbf{EXECUTE} 
 ### *Plan & Orchestrate • Zero-API Prompt Architect*
 
 [![npm version](https://img.shields.io/npm/v/build-with-ai?style=flat-square&color=cb3837&logo=npm)](https://www.npmjs.com/package/build-with-ai)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![Node >= 16](https://img.shields.io/badge/Node-%3E%3D16-green?style=flat-square&logo=nodedotjs)](https://nodejs.org)
 
 GitHub: **[PicadoLabs/build-with-ai](https://github.com/PicadoLabs/build-with-ai)** • npm: **[build-with-ai](https://www.npmjs.com/package/build-with-ai)** (`npx build-with-ai`)
@@ -168,7 +168,7 @@ npx build-with-ai export
 ### *Route & Optimize • Sub-3ms Pareto AI Traffic Control*
 
 [![Python >= 3.10+](https://img.shields.io/badge/Python-%3E%3D3.10%2B-3776ab?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![FastAPI](https://img.shields.io/badge/FastAPI-REST_%26_SSE-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 
 GitHub: **[PicadoLabs/ai-model-router](https://github.com/PicadoLabs/ai-model-router)**
@@ -257,7 +257,7 @@ cd frontend && npm run dev
 ### *Execute & Verify • Sandboxed Verify-First Coding Agent*
 
 [![Python >= 3.10+](https://img.shields.io/badge/Python-%3E%3D3.10%2B-3776ab?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![Sandbox: psutil](https://img.shields.io/badge/Sandbox-psutil_%26_Docker-2e7d58?style=flat-square)](https://github.com/PicadoLabs/terminal-agent)
 
 GitHub: **[PicadoLabs/terminal-agent](https://github.com/PicadoLabs/terminal-agent)**
@@ -351,7 +351,7 @@ terminal-agent rollback <checkpoint-id>
 ### *Benchmark & Evaluate • Polyglot Evaluation Suite*
 
 [![Environment](https://img.shields.io/badge/Environment-Python_3.10%2B_%7C_Node_%3E%3D18-3776ab?style=flat-square)](https://github.com/PicadoLabs/agent-bench)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
 [![Benchmarks](https://img.shields.io/badge/Benchmarks-12_Polyglot_Tasks-2e7d58?style=flat-square)](https://github.com/PicadoLabs/agent-bench)
 
 GitHub: **[PicadoLabs/agent-bench](https://github.com/PicadoLabs/agent-bench)**
@@ -516,7 +516,7 @@ python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model 
 
 ## Contributing
 
-Picado Labs is built in the open under the **MIT License**. We welcome contributions from developers worldwide!
+Picado Labs is built in the open under the **Apache 2.0 License**. We welcome contributions from developers worldwide!
 
 ### Ways to Contribute
 - **build-with-ai**: Contribute new domain templates, prompt optimizations, or workflow validation hooks.
