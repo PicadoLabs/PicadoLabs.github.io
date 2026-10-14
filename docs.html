@@ -17,7 +17,7 @@
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="index.html#top" aria-label="Picado Labs home">
-        <img src="assets/img/logo.png" alt="" width="34" height="34" />
+        <img src="assets/img/logo-mark.png" alt="Picado Labs" width="28" height="28" />
         <span>Picado Labs</span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Primary navigation">
@@ -145,7 +145,7 @@
               </div>
             </div>
             <p>
-              <strong>What is this?</strong> A zero-API CLI prompt architect. It helps a developer turn a software idea into ordered implementation phases, reusable decisions, and copy-ready prompts for any AI assistant.
+              <strong>What is this?</strong> A zero-API CLI prompt architect (15+ contributors • 1.2k downloads). It helps a developer turn a software idea into ordered implementation phases, reusable decisions, and copy-ready prompts for any AI assistant.
             </p>
             <div class="doc-grid">
               <article class="doc-card">
@@ -187,7 +187,7 @@ npx build-with-ai export</code></pre>
               </div>
             </div>
             <p>
-              <strong>What is this?</strong> An explainable AI traffic controller that routes each task to the best local or cloud model using quality, cost, latency, capability, and reliability signals.
+              <strong>What is this?</strong> An explainable AI traffic controller (5+ contributors • 2.2k downloads) that routes each task to the best local or cloud model using quality, cost, latency, capability, and reliability signals.
             </p>
             <div class="doc-grid">
               <article class="doc-card">
@@ -212,9 +212,10 @@ Pareto scoring: quality + cost + latency + reliability
     |
     v
 Selected model -> response + telemetry</code></pre>
-            <pre><code>python backend/app/cli/main.py doctor
-python backend/app/cli/main.py route "Debug an async deadlock"
-python backend/app/cli/main.py run "Write a token bucket limiter"</code></pre>
+            <pre><code>pip install model-router-cli
+modelrouter doctor
+modelrouter route "Write an optimized async task worker in Python"
+modelrouter ui --open-browser</code></pre>
           </section>
 
           <section class="doc-section project-doc" id="terminal-agent">
@@ -230,7 +231,7 @@ python backend/app/cli/main.py run "Write a token bucket limiter"</code></pre>
               </div>
             </div>
             <p>
-              <strong>What is this?</strong> A verify-first autonomous coding agent that edits files, runs commands, tests work, classifies failures, and can roll back checkpoints.
+              <strong>What is this?</strong> A verify-first autonomous coding agent (2+ contributors • 440+ downloads) that edits files, runs commands, tests work, classifies failures, and can roll back checkpoints.
             </p>
             <div class="doc-grid">
               <article class="doc-card">
@@ -255,10 +256,10 @@ IndependentVerifier executes tests
     |
     +--> pass: proof of done
     +--> fail: classify failure -> repair plan -> retry or rollback</code></pre>
-            <pre><code>pip install terminal-agent
-terminal-agent run "Implement JWT middleware with unit tests"
-terminal-agent status
-terminal-agent rollback &lt;checkpoint-id&gt;</code></pre>
+            <pre><code>pip install terminal-agent-cli
+terminal-agent doctor
+terminal-agent run "Implement JWT auth middleware with pytest tests"
+terminal-agent resume</code></pre>
           </section>
 
           <section class="doc-section project-doc" id="agent-bench">
@@ -274,7 +275,7 @@ terminal-agent rollback &lt;checkpoint-id&gt;</code></pre>
               </div>
             </div>
             <p>
-              <strong>What is this?</strong> A provider-agnostic benchmark platform for measuring coding agents on realistic Python and Node.js software-engineering tasks.
+              <strong>What is this?</strong> A provider-agnostic benchmark platform (3+ contributors) for measuring coding agents on realistic Python and Node.js software-engineering tasks.
             </p>
             <div class="doc-grid">
               <article class="doc-card">
@@ -351,9 +352,7 @@ python agentbench.py run --benchmark fix-rate-limiter --provider ollama</code></
         </div>
         <p class="footer__tagline">Deterministic, verify-first software systems for autonomous AI agents.</p>
         <p class="footer__maintainer">
-          Maintained by <strong>Vardhman (<a href="https://github.com/Kaap10" target="_blank" rel="noopener">Kap10</a>)</strong> • 
-          <a href="https://x.com/Kap10x" target="_blank" rel="noopener">@Kap10x</a> • 
-          <a href="https://github.com/Kaap10" target="_blank" rel="noopener">GitHub</a>
+          Founder and Maintainer <strong><a href="https://github.com/Kaap10" target="_blank" rel="noopener">@Vardhman Gupta</a></strong>
         </p>
       </div>
 
