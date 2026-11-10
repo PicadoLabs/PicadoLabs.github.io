@@ -6,27 +6,47 @@ export const ProofSection = () => {
     <section className="py-24" id="proof">
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[0.85fr_1.15fr] gap-16 items-start">
         <div>
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono font-bold text-emerald-600 uppercase tracking-widest mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Why Picado Labs
+            Verified Impact
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight leading-tight mb-8">
             Less self-reporting.<br />More empirical proof.
           </h2>
+
+          {/* Real Metrics Grid */}
+          <div className="grid grid-cols-2 gap-4 p-5 bg-zinc-50 rounded-2xl border border-zinc-200 shadow-sm">
+            <div>
+              <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">41</div>
+              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">Active Contributors</div>
+            </div>
+            <div>
+              <div className="text-2xl font-black text-emerald-600 font-mono tracking-tight">4.4k+</div>
+              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">PyPI Downloads</div>
+            </div>
+            <div className="pt-3 border-t border-zinc-200/60">
+              <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">4</div>
+              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">Production Packages</div>
+            </div>
+            <div className="pt-3 border-t border-zinc-200/60">
+              <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">100%</div>
+              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">Apache 2.0 Open Source</div>
+            </div>
+          </div>
         </div>
         
         <div className="space-y-6">
-          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-zinc-50 transition-colors">
+          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-white transition-colors">
             <strong className="block text-lg text-zinc-900 mb-2 font-bold">Deterministic Context</strong>
-            <p className="text-sm text-zinc-600 leading-relaxed">Persistent filesystem memory and context injection prevent prompt degradation and LLM hallucination over long multi-turn sessions.</p>
+            <p className="text-sm text-zinc-600 leading-relaxed font-medium">Persistent filesystem memory and context injection prevent prompt degradation and LLM hallucination over long multi-turn sessions.</p>
           </div>
-          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-zinc-50 transition-colors">
+          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-white transition-colors">
             <strong className="block text-lg text-zinc-900 mb-2 font-bold">Bounded Sandboxing</strong>
-            <p className="text-sm text-zinc-600 leading-relaxed">Hard command policies, secret leak detection, and automatic checkpoint rollback keep your local system and codebase completely safe during autonomous execution.</p>
+            <p className="text-sm text-zinc-600 leading-relaxed font-medium">Hard command policies, secret leak detection, and automatic checkpoint rollback keep your local system and codebase completely safe during autonomous execution.</p>
           </div>
-          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-zinc-50 transition-colors">
+          <div className="p-6 bg-zinc-50 border border-zinc-200 border-l-2 border-l-emerald-500 rounded-r-xl hover:bg-white transition-colors">
             <strong className="block text-lg text-zinc-900 mb-2 font-bold">Independent Verification</strong>
-            <p className="text-sm text-zinc-600 leading-relaxed">The agent never declares itself finished. Work is verified through automated test suites and AST validation before code is accepted into your codebase.</p>
+            <p className="text-sm text-zinc-600 leading-relaxed font-medium">The agent never declares itself finished. Work is verified through automated test suites and AST validation before code is accepted into your codebase.</p>
           </div>
         </div>
       </div>
@@ -38,21 +58,25 @@ export const Quickstart = () => {
   const [copied, setCopied] = useState(false);
 
   const lines = [
-    '# 1. Initialize project architecture (zero API keys)',
+    '# 1. Install official Picado packages',
+    '$ npm install -g build-with-ai',
+    '$ pip install model-router-cli terminal-agent-cli agentbench-core',
+    '',
+    '# 2. Initialize project architecture (zero API keys)',
     '$ npx build-with-ai init',
     '',
-    '# 2. Get step-by-step guidance & copy prompt to clipboard',
+    '# 3. Get step-by-step guidance & copy prompt to clipboard',
     '$ npx build-with-ai next',
     '',
-    '# 3. Record decisions and proceed to next phase',
-    '$ npx build-with-ai done',
+    '# 4. Route task with sub-3ms explainable decision',
+    '$ modelrouter route "Build async rate limiter"',
     '',
-    '# 4. Inspect current workflow status & progress',
-    '$ npx build-with-ai status'
+    '# 5. Run autonomous verified coding agent',
+    '$ terminal-agent run "Implement rate limiter with tests"'
   ];
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('npx build-with-ai init\nnpx build-with-ai next\nnpx build-with-ai done\nnpx build-with-ai status');
+    navigator.clipboard.writeText('npm install -g build-with-ai\npip install model-router-cli terminal-agent-cli agentbench-core\nnpx build-with-ai init\nnpx build-with-ai next');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -68,8 +92,8 @@ export const Quickstart = () => {
           <h2 className="text-3xl font-bold text-zinc-900 tracking-tight mb-4">
             Get started with planning.
           </h2>
-          <p className="text-zinc-600 leading-relaxed">
-            Use <code className="bg-emerald-500/10 text-emerald-600 px-1.5 py-0.5 rounded font-mono text-sm font-semibold">build-with-ai</code> to turn an idea into an actionable blueprint with zero setup and zero API dependencies.
+          <p className="text-zinc-600 leading-relaxed font-medium">
+            Use <code className="bg-emerald-500/10 text-emerald-600 px-1.5 py-0.5 rounded font-mono text-sm font-semibold">build-with-ai</code> or install our PyPI packages (<code className="bg-zinc-100 text-zinc-800 px-1.5 py-0.5 rounded font-mono text-xs">model-router-cli</code>, <code className="bg-zinc-100 text-zinc-800 px-1.5 py-0.5 rounded font-mono text-xs">terminal-agent-cli</code>, <code className="bg-zinc-100 text-zinc-800 px-1.5 py-0.5 rounded font-mono text-xs">agentbench-core</code>) with zero friction.
           </p>
         </div>
         
@@ -104,35 +128,6 @@ export const Quickstart = () => {
                 </div>
               ))}
             </pre>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export const FinalCTA = () => {
-  return (
-    <section className="py-24">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="relative p-10 md:p-14 bg-zinc-50 border border-zinc-300 rounded-[24px] shadow-[0_24px_64px_rgba(0,0,0,0.5),0_0_40px_rgba(16,185,129,0.15)] overflow-hidden flex flex-col md:flex-row items-center gap-10 text-center md:text-left before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-emerald-400 before:to-transparent">
-          <img src="/assets/img/logo.png" alt="Picado Labs" className="w-20 h-20 rounded-xl shadow-[0_0_30px_rgba(16,185,129,0.3)] shrink-0" />
-          <div className="flex-1">
-            <div className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-widest mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Open-Source Engineering
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight leading-snug mb-6">
-              Built in the open for deterministic, verifiable AI software systems.
-            </h2>
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="h-10 px-6 bg-emerald-500 hover:bg-[#10b981] text-zinc-900 font-bold rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all">
-                Contribute on GitHub
-              </a>
-              <a href="mailto:picadolabs@gmail.com" className="h-10 px-6 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-semibold rounded-lg border border-zinc-300 flex items-center justify-center transition-colors">
-                Contact Us
-              </a>
-            </div>
           </div>
         </div>
       </div>

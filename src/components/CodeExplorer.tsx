@@ -55,15 +55,15 @@ export const CodeExplorer = () => {
     eval: {
       label: '04 • AgentBench',
       file: 'agentbench.sh',
-      raw: '# 1. Verify environment health and local execution sandboxes\n$ python agentbench.py doctor\n\n# 2. Run benchmark sweep with free local model via Ollama ($0 API cost)\n$ python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model qwen2.5-coder:1.5b\n\n# 3. Ingest any public GitHub PR into a reproducible benchmark task\n$ python agentbench.py ingest --pr https://github.com/org/repo/pull/123',
+      raw: '# 1. Install official AgentBench package from PyPI\n$ pip install agentbench-core\n\n# 2. Run benchmark sweep with free local model via Ollama ($0 API cost)\n$ python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model qwen2.5-coder:1.5b\n\n# 3. Ingest any public GitHub PR into a reproducible benchmark task\n$ python agentbench.py ingest --pr https://github.com/org/repo/pull/123',
       content: (
         <>
-          <span className="text-zinc-500 italic"># 1. Verify environment health and local execution sandboxes</span><br />
-          <span className="text-emerald-400 font-bold">$</span> python agentbench.py doctor<br /><br />
+          <span className="text-zinc-500 italic"># 1. Install official AgentBench package from PyPI</span><br />
+          <span className="text-emerald-400 font-bold">$</span> pip install agentbench-core<br /><br />
           <span className="text-zinc-500 italic"># 2. Run benchmark sweep with free local model via Ollama ($0 API cost)</span><br />
-          <span className="text-emerald-400 font-bold">$</span> python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model qwen2.5-coder:1.5b<br /><br />
+          <span className="text-emerald-400 font-bold">$</span> python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model <span className="text-amber-300">qwen2.5-coder:1.5b</span><br /><br />
           <span className="text-zinc-500 italic"># 3. Ingest any public GitHub PR into a reproducible benchmark task</span><br />
-          <span className="text-emerald-400 font-bold">$</span> python agentbench.py ingest --pr https://github.com/org/repo/pull/123
+          <span className="text-emerald-400 font-bold">$</span> python agentbench.py ingest --pr <span className="text-amber-300">https://github.com/org/repo/pull/123</span>
         </>
       )
     }
@@ -88,53 +88,58 @@ export const CodeExplorer = () => {
           </h2>
         </div>
 
-        <div className="flex overflow-x-auto gap-2 mb-6 pb-2 scrollbar-hide border-b border-zinc-200">
-          {(Object.keys(snippets) as Array<keyof typeof snippets>).map((key) => (
+        {/* Tab Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          {(['plan', 'route', 'execute', 'eval'] as const).map((tab) => (
             <button
-              key={key}
-              onClick={() => setActiveTab(key)}
-              className={"px-4 py-2 rounded-lg font-mono text-[13px] font-semibold whitespace-nowrap transition-colors " + 
-                (activeTab === key
-                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm"
-                  : "bg-transparent text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 border border-transparent")
-              }
+              key={tab}
+              onClick={() => { setActiveTab(tab); setCopied(false); }}
+              className={`px-4 py-2 rounded-xl text-[13px] font-semibold transition-all ${
+                activeTab === tab
+                  ? 'bg-zinc-900 text-white shadow-md'
+                  : 'bg-white text-zinc-600 border border-zinc-200 hover:border-zinc-300 hover:text-zinc-900'
+              }`}
             >
-              {snippets[key].label}
+              {snippets[tab].label}
             </button>
           ))}
         </div>
 
-        <div className="bg-zinc-950 rounded-2xl border border-zinc-800 shadow-2xl overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-3.5 bg-zinc-900/50 border-b border-zinc-800">
-            <div className="flex items-center gap-4">
+        {/* Terminal Window */}
+        <div className="max-w-4xl mx-auto bg-zinc-950 rounded-2xl border border-zinc-800 overflow-hidden shadow-2xl">
+          {/* Top Bar */}
+          <div className="flex items-center justify-between px-5 py-3.5 bg-zinc-900/60 border-b border-zinc-800">
+            <div className="flex items-center gap-2.5">
               <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-zinc-700 hover:bg-red-500 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-zinc-700 hover:bg-amber-500 transition-colors cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition-colors cursor-pointer" />
+                <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+                <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
               </div>
-              <span className="font-mono text-xs text-zinc-400">{snippets[activeTab].file}</span>
+              <span className="font-mono text-xs text-zinc-400 ml-1">{snippets[activeTab].file}</span>
             </div>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white font-mono text-[11px] transition-colors border border-zinc-700"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white font-mono text-[11px] transition-colors border border-zinc-700"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? <span className="text-emerald-400">Copied</span> : 'Copy'}
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy</span>
+                </>
+              )}
             </button>
           </div>
-          <div className="p-6 overflow-x-auto">
-            <AnimatePresence mode="wait">
-              <motion.pre
-                key={activeTab}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.15 }}
-                className="font-mono text-[13px] sm:text-[14px] leading-relaxed text-zinc-300"
-              >
-                {snippets[activeTab].content}
-              </motion.pre>
-            </AnimatePresence>
+
+          {/* Terminal Content */}
+          <div className="p-6 overflow-x-auto min-h-[170px] flex items-center">
+            <pre className="font-mono text-[13px] leading-relaxed text-zinc-300">
+              {snippets[activeTab].content}
+            </pre>
           </div>
         </div>
       </div>

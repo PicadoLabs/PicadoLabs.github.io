@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ArrowDown, Code2, Network, Terminal, ShieldCheck, Box, GitMerge, Copy, Check, ExternalLink, ChevronRight } from 'lucide-react';
+import { ArrowRight, ArrowDown, Code2, Network, Terminal, ShieldCheck, Box, GitMerge, Copy, Check, ExternalLink, ChevronRight, Package } from 'lucide-react';
 
 export const DocsView = () => {
   const [activeId, setActiveId] = useState('overview');
@@ -80,10 +80,16 @@ export const DocsView = () => {
     </div>
   );
 
-  const InfoRow = ({ label, value }: { label: string; value: string }) => (
-    <div className="flex items-start gap-3 py-2">
-      <span className="text-[13px] font-bold text-zinc-500 w-28 shrink-0">{label}</span>
-      <span className="text-[13px] text-zinc-700 font-medium">{value}</span>
+  const InfoRow = ({ label, value, link }: { label: string; value: string; link?: string }) => (
+    <div className="flex items-start gap-3 py-2 px-4">
+      <span className="text-[13px] font-bold text-zinc-500 w-32 shrink-0">{label}</span>
+      {link ? (
+        <a href={link} target="_blank" rel="noopener noreferrer" className="text-[13px] text-emerald-600 hover:text-emerald-700 font-semibold underline underline-offset-2 flex items-center gap-1">
+          {value} <ExternalLink className="w-3 h-3" />
+        </a>
+      ) : (
+        <span className="text-[13px] text-zinc-700 font-medium">{value}</span>
+      )}
     </div>
   );
 
@@ -166,7 +172,6 @@ export const DocsView = () => {
           </div>
         </section>
 
-
         {/* Problem & Edge Table */}
         <div className="mt-12 mb-20">
           <h3 className="text-xl font-bold text-zinc-900 tracking-tight mb-3">What problem we're solving</h3>
@@ -180,10 +185,10 @@ export const DocsView = () => {
               <div>The Picado Edge</div>
             </div>
             {[
-              { project: 'build-with-ai', link: 'https://github.com/PicadoLabs/build-with-ai', stage: 'Plan', problem: 'Developers face blank canvas paralysis, context drift, and broken code when asking AI to build whole applications.', edge: 'Zero-API, local-first CLI that guides step-by-step with 11 production templates and persistent .buildwithai/ context injection (15+ contributors • 1.2k downloads).' },
-              { project: 'AI Model Router', link: 'https://github.com/PicadoLabs/ai-model-router', stage: 'Route', problem: 'Companies face ballooning API costs, rate limits, and latency spikes across models without explainable routing logic.', edge: 'Sub-3ms Pareto AI Traffic Control Room UI with triple-mode analysis, Thompson Sampling RL, and PyPI distribution (5+ contributors • 2.2k downloads).' },
-              { project: 'Terminal Agent', link: 'https://github.com/PicadoLabs/terminal-agent', stage: 'Execute', problem: 'Autonomous coding agents make sweeping unverified changes, hallucinate task success, and break repository builds.', edge: 'Verify-first sandboxing (psutil/Docker), 12 core tools, 12-category self-healing recovery, and instant checkpoint rollback (2+ contributors • 440+ downloads).' },
-              { project: 'AgentBench', link: 'https://github.com/PicadoLabs/agent-bench', stage: 'Evaluate', problem: 'Traditional LLM benchmarks test isolated toy functions, while evaluating multi-turn agents is complex and provider-locked.', edge: 'Instant GitHub PR Ingestion into reproducible tasks, 12 polyglot benchmarks, local Ollama mode ($0 cost), and 5D composite scoring (3+ contributors).' }
+              { project: 'build-with-ai', link: 'https://github.com/PicadoLabs/build-with-ai', stage: 'Plan', problem: 'Developers face blank canvas paralysis, context drift, and broken code when asking AI to build whole applications.', edge: 'Zero-API, local-first CLI with 11 production templates and persistent .buildwithai/ context injection (28 contributors • npm v1.4.0).' },
+              { project: 'AI Model Router', link: 'https://github.com/PicadoLabs/ai-model-router', stage: 'Route', problem: 'Companies face ballooning API costs, rate limits, and latency spikes across models without explainable routing logic.', edge: 'Sub-3ms Pareto AI Traffic Control Room UI with triple-mode analysis, Thompson Sampling RL, and PyPI distribution (11 contributors • 2.8k+ PyPI downloads • model-router-cli v1.2.0).' },
+              { project: 'Terminal Agent', link: 'https://github.com/PicadoLabs/terminal-agent', stage: 'Execute', problem: 'Autonomous coding agents make sweeping unverified changes, hallucinate task success, and break repository builds.', edge: 'Verify-first sandboxing (psutil/Docker), 12 core tools, 12-category self-healing recovery, and instant checkpoint rollback (3 contributors • 1.0k+ PyPI downloads • terminal-agent-cli v0.1.1).' },
+              { project: 'AgentBench', link: 'https://github.com/PicadoLabs/agent-bench', stage: 'Evaluate', problem: 'Traditional LLM benchmarks test isolated toy functions, while evaluating multi-turn agents is complex and provider-locked.', edge: 'Instant GitHub PR Ingestion into reproducible tasks, 12 polyglot benchmarks, local Ollama mode ($0 cost), and 5D composite scoring (4 contributors • 520+ PyPI downloads • agentbench-core v1.0.0).' }
             ].map((row, i) => (
               <div key={i} className={`grid grid-cols-1 md:grid-cols-[1.1fr_0.6fr_1.6fr_1.7fr] px-5 py-4 items-start gap-4 md:gap-6 ${i < 3 ? 'border-b border-zinc-200' : ''} hover:bg-white transition-colors`}>
                 <div><a href={row.link} target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:text-emerald-700 underline underline-offset-2 decoration-emerald-200">{row.project}</a></div>
@@ -204,7 +209,7 @@ export const DocsView = () => {
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">build-with-ai</h2>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              15+ contributors • 1.2k downloads
+              28 contributors • npm v1.4.0
             </span>
             <a href="https://github.com/PicadoLabs/build-with-ai" target="_blank" rel="noopener noreferrer" className="ml-auto text-[12px] font-semibold text-zinc-400 hover:text-emerald-600 flex items-center gap-1 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> GitHub</a>
           </div>
@@ -212,15 +217,16 @@ export const DocsView = () => {
             A zero-API, local-first CLI that generates structured architecture plans before any code is written. Prevents context drift and blank-canvas paralysis by persisting state to <code className="bg-zinc-100 px-1.5 py-0.5 rounded text-[13px] font-mono text-zinc-800">.buildwithai/</code> and automatically interpolating prior decisions into downstream prompts.
           </p>
           <div className="border border-zinc-200 rounded-xl overflow-hidden mb-6">
-            <InfoRow label="Tech Stack" value="Node.js (>=18), TypeScript" />
-            <div className="border-t border-zinc-100"><InfoRow label="Community" value="15+ contributors • 1.2k downloads" /></div>
+            <InfoRow label="Package" value="build-with-ai (npm v1.4.0)" link="https://www.npmjs.com/package/build-with-ai" />
+            <div className="border-t border-zinc-100"><InfoRow label="Tech Stack" value="Node.js (>=18), TypeScript, npx" /></div>
+            <div className="border-t border-zinc-100"><InfoRow label="Community" value="28 contributors • 26 forks" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Cost" value="$0 — Zero API keys required (100% Local)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Templates" value="11 production templates (SaaS MVP, Full-Stack, REST API, FastAPI, Mobile, Flutter, Electron, Chrome Ext, AI Agent, Multi-Agent, Discord Bot)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Storage" value="Branch-scoped .buildwithai/ memory + automated documentation export" /></div>
           </div>
 
           <CmdBlock id="build-1" cmds={[
-            '# 1. Initialize a structured project plan',
+            '# 1. Initialize a structured project plan (or install globally: npm install -g build-with-ai)',
             '$ npx build-with-ai init',
             '',
             '# 2. Advance to next step (copies context-injected prompt to clipboard)',
@@ -241,7 +247,7 @@ export const DocsView = () => {
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">Model Router</h2>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              5+ contributors • 2.2k downloads
+              11 contributors • 2.8k+ PyPI downloads
             </span>
             <a href="https://github.com/PicadoLabs/ai-model-router" target="_blank" rel="noopener noreferrer" className="ml-auto text-[12px] font-semibold text-zinc-400 hover:text-emerald-600 flex items-center gap-1 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> GitHub</a>
           </div>
@@ -249,8 +255,9 @@ export const DocsView = () => {
             Sub-3ms Pareto routing engine and AI Traffic Control Room. Analyzes prompt complexity via regex heuristics (&lt;2.5ms), dense ONNX semantic embeddings, and continuous complexity scoring (0.05 - 0.99) with Thompson Sampling RL auto-tuning.
           </p>
           <div className="border border-zinc-200 rounded-xl overflow-hidden mb-6">
-            <InfoRow label="Tech Stack" value="Python (>=3.10), FastAPI, React 18, PyPI (model-router-cli)" />
-            <div className="border-t border-zinc-100"><InfoRow label="Community" value="5+ contributors • 2.2k downloads" /></div>
+            <InfoRow label="PyPI Package" value="model-router-cli (v1.2.0)" link="https://pypi.org/project/model-router-cli/" />
+            <div className="border-t border-zinc-100"><InfoRow label="Tech Stack" value="Python (>=3.10), FastAPI, React 18, Typer" /></div>
+            <div className="border-t border-zinc-100"><InfoRow label="Community" value="11 contributors • 2,880+ PyPI downloads • 13 forks" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Dashboard" value="AI Traffic Control Room (FastAPI + React with live SSE streaming, A/B simulator)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Resilience" value="Sliding-window circuit breaker + tiered fallback supervisor (429/503 retry)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Observability" value="OpenTelemetry distributed tracing + native Prometheus /metrics" /></div>
@@ -281,7 +288,7 @@ export const DocsView = () => {
           </div>
 
           <CmdBlock id="route-1" cmds={[
-            '# 1. Install official CLI from PyPI',
+            '# 1. Install official package from PyPI',
             '$ pip install model-router-cli',
             '',
             '# 2. Check system diagnostics & toolchain health',
@@ -302,7 +309,7 @@ export const DocsView = () => {
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">Terminal Agent</h2>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              2+ contributors • 440+ downloads
+              3 contributors • 1.0k+ PyPI downloads
             </span>
             <a href="https://github.com/PicadoLabs/terminal-agent" target="_blank" rel="noopener noreferrer" className="ml-auto text-[12px] font-semibold text-zinc-400 hover:text-emerald-600 flex items-center gap-1 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> GitHub</a>
           </div>
@@ -310,8 +317,9 @@ export const DocsView = () => {
             Autonomous terminal coding agent built on a verify-first architectural paradigm. Enforces a strict closed loop: <strong>Observe → Plan → Act → Test → Independent Verify → Repair → Prove Completion</strong>. Executes in isolated sandboxes and self-heals across a 12-category failure taxonomy.
           </p>
           <div className="border border-zinc-200 rounded-xl overflow-hidden mb-6">
-            <InfoRow label="Tech Stack" value="Python (>=3.10), Typer, psutil, Docker, PyPI (terminal-agent-cli)" />
-            <div className="border-t border-zinc-100"><InfoRow label="Community" value="2+ contributors • 440+ downloads" /></div>
+            <InfoRow label="PyPI Package" value="terminal-agent-cli (v0.1.1)" link="https://pypi.org/project/terminal-agent-cli/" />
+            <div className="border-t border-zinc-100"><InfoRow label="Tech Stack" value="Python (>=3.10), Typer, psutil, Docker" /></div>
+            <div className="border-t border-zinc-100"><InfoRow label="Community" value="3 contributors • 1,040+ PyPI downloads" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Verification" value="Independent Verifier (dual-phase isolated test runner & AST contract assertions)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Sandboxing" value="Dual-layer (psutil process-tree isolation with zombie cleanup + Docker containers)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Security" value="Zero-Trust Secret Guard (.env/keys blocked, tokens redacted) + Command classifier" /></div>
@@ -344,7 +352,7 @@ export const DocsView = () => {
           </div>
 
           <CmdBlock id="exec-1" cmds={[
-            '# 1. Install Terminal Agent from PyPI',
+            '# 1. Install official Terminal Agent from PyPI',
             '$ pip install terminal-agent-cli',
             '',
             '# 2. Check agent readiness & execution sandbox',
@@ -365,7 +373,7 @@ export const DocsView = () => {
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">AgentBench</h2>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              3+ contributors
+              4 contributors • 520+ PyPI downloads
             </span>
             <a href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener noreferrer" className="ml-auto text-[12px] font-semibold text-zinc-400 hover:text-emerald-600 flex items-center gap-1 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> GitHub</a>
           </div>
@@ -373,8 +381,9 @@ export const DocsView = () => {
             Provider-agnostic, local-first evaluation and benchmarking platform for autonomous coding agents. Measures multi-turn agents on 12 standardized polyglot tasks, ingests public GitHub PRs into immutable benchmarks, and computes 5D composite SWE scores.
           </p>
           <div className="border border-zinc-200 rounded-xl overflow-hidden mb-6">
-            <InfoRow label="Tech Stack" value="Python (>=3.10), Node.js (>=18), FastAPI, React" />
-            <div className="border-t border-zinc-100"><InfoRow label="Community" value="3+ contributors" /></div>
+            <InfoRow label="PyPI Package" value="agentbench-core (v1.0.0)" link="https://pypi.org/project/agentbench-core/" />
+            <div className="border-t border-zinc-100"><InfoRow label="Tech Stack" value="Python (>=3.10), Node.js (>=18), FastAPI, React" /></div>
+            <div className="border-t border-zinc-100"><InfoRow label="Community" value="4 contributors • 520+ PyPI downloads • 5 stars" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Cost" value="$0.00 with free local Ollama models (Qwen2.5-Coder, DeepSeek)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Tasks" value="12 standardized polyglot challenges (Python pytest + Node.js node --test)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="PR Ingestion" value="CLI & Web tool to turn any public GitHub PR into a benchmark task" /></div>
@@ -404,11 +413,11 @@ export const DocsView = () => {
           </div>
 
           <CmdBlock id="eval-1" cmds={[
-            '# 1. Verify benchmark health & execution sandboxes',
-            '$ python agentbench.py doctor',
+            '# 1. Install official core benchmark package from PyPI',
+            '$ pip install agentbench-core',
             '',
-            '# 2. List available benchmarks across Python & Node.js',
-            '$ python agentbench.py list',
+            '# 2. Verify benchmark health & execution sandboxes',
+            '$ python agentbench.py doctor',
             '',
             '# 3. Run benchmark sweep with free local model via Ollama ($0 API cost)',
             '$ python agentbench.py run --benchmark fix-rate-limiter --provider ollama --model qwen2.5-coder:1.5b',
@@ -429,8 +438,9 @@ export const DocsView = () => {
           <h2 className="text-2xl font-bold text-zinc-900 tracking-tight mb-6">Full Pipeline Quickstart</h2>
 
           <CmdBlock id="qs-1" cmds={[
-            '# Step 1: Initialize project architecture with persistent context',
-            '$ npx build-with-ai init',
+            '# Step 1: Install official packages via npm and PyPI',
+            '$ npm install -g build-with-ai',
+            '$ pip install model-router-cli terminal-agent-cli agentbench-core',
             '',
             '# Step 2: Verify toolchain health across all systems',
             '$ modelrouter doctor',
@@ -438,7 +448,7 @@ export const DocsView = () => {
             '$ python agentbench.py doctor',
             '',
             '# Step 3: Run the end-to-end verified pipeline',
-            '$ npx build-with-ai next',
+            '$ npx build-with-ai init',
             '$ modelrouter route "Build a secure token bucket rate limiter in Python"',
             '$ terminal-agent run "Implement token bucket rate limiter with pytest tests"',
             '$ python agentbench.py run --benchmark fix-rate-limiter --provider ollama'

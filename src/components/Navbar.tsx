@@ -6,25 +6,25 @@ export const Navbar = ({ onOpenDocs }: { onOpenDocs?: () => void }) => {
   const projects = [
     {
       title: 'build-with-ai',
-      desc: 'Stateful architecture planning with zero API keys.',
+      desc: 'Stateful architecture planning (npm v1.4.0).',
       icon: Code2,
       link: 'https://github.com/PicadoLabs/build-with-ai'
     },
     {
       title: 'Model Router',
-      desc: 'Sub-3ms dynamic routing based on cost and quality.',
+      desc: 'Sub-3ms Pareto router (PyPI: model-router-cli).',
       icon: Network,
       link: 'https://github.com/PicadoLabs/ai-model-router'
     },
     {
       title: 'Terminal Agent',
-      desc: 'Secure sandboxed execution and self-repair loops.',
+      desc: 'Verify-first sandbox agent (PyPI: terminal-agent-cli).',
       icon: Terminal,
       link: 'https://github.com/PicadoLabs/terminal-agent'
     },
     {
       title: 'AgentBench',
-      desc: '5D matrix evaluation for autonomous LLM agents.',
+      desc: '5D matrix agent evals (PyPI: agentbench-core).',
       icon: ShieldCheck,
       link: 'https://github.com/PicadoLabs/agent-bench'
     }

@@ -1,82 +1,51 @@
 import React from 'react';
-import { Terminal, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import logoMark from '../../assets/img/logo-mark.png';
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-[#0b0c10] overflow-hidden border-t border-white/5">
-      {/* Water Effect at the Top of Footer */}
-      <div className="relative w-full h-[200px] md:h-[280px] overflow-hidden">
-        {/* Emerald gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-600/40 via-emerald-700/30 to-[#0b0c10] z-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10] via-transparent to-transparent z-10" />
-        
-        {/* Water Caustic Layer 1 */}
+    <footer className="bg-[#0b0c10] border-t border-white/10 text-white pt-0 relative overflow-hidden">
+      {/* Water Caustic / Flowing Effect at Top of Footer */}
+      <div className="w-full h-[60px] relative overflow-hidden pointer-events-none">
         <div 
-          className="absolute inset-[-100%] opacity-[0.6] mix-blend-overlay z-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            backgroundSize: '300px 300px',
-            animation: 'footerWater1 45s linear infinite'
-          }}
-        />
-        
-        {/* Water Caustic Layer 2 */}
-        <div 
-          className="absolute inset-[-100%] opacity-[0.5] mix-blend-overlay z-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            backgroundSize: '250px 250px',
-            animation: 'footerWater2 35s linear infinite'
-          }}
-        />
-
-        {/* Dashed grid overlay on the water */}
-        <div className="absolute inset-0 flex justify-center opacity-20 z-20 pointer-events-none">
-          <div className="w-full max-w-6xl grid grid-cols-4 h-full border-x border-white/20 border-dashed">
-            <div className="border-r border-white/20 border-dashed h-full" />
-            <div className="border-r border-white/20 border-dashed h-full" />
-            <div className="border-r border-white/20 border-dashed h-full" />
-            <div className="h-full" />
-          </div>
+          className="relative w-full h-full overflow-hidden"
+          style={{ maskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)' }}
+        >
+          {/* Base emerald tint */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#10b981]/20 via-[#10b981]/10 to-transparent mix-blend-screen z-10" />
+          
+          {/* Flowing Water Layer 1 */}
+          <div 
+            className="absolute inset-[-100%] opacity-[0.4] mix-blend-screen"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              backgroundSize: '220px 220px',
+              animation: 'waterFlow 35s linear infinite'
+            }}
+          />
+          
+          {/* Flowing Water Layer 2 */}
+          <div 
+            className="absolute inset-[-100%] opacity-[0.35] mix-blend-screen"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              backgroundSize: '180px 180px',
+              animation: 'waterFlow2 28s linear infinite'
+            }}
+          />
         </div>
       </div>
 
-      {/* Keyframes */}
-      <style>{`
-        @keyframes footerWater1 {
-          0% { transform: translate(0, 0) scale(1.1); }
-          50% { transform: translate(-120px, -60px) scale(1.2); }
-          100% { transform: translate(0, 0) scale(1.1); }
-        }
-        @keyframes footerWater2 {
-          0% { transform: translate(0, 0) scale(1.2); }
-          50% { transform: translate(90px, -70px) scale(1.1); }
-          100% { transform: translate(0, 0) scale(1.2); }
-        }
-      `}</style>
-
-      {/* Faint Background Grid Lines for content area */}
-      <div className="absolute inset-0 pointer-events-none flex justify-center opacity-20">
-        <div className="w-full max-w-6xl grid grid-cols-4 h-full border-x border-white/10 border-dashed">
-          <div className="border-r border-white/10 border-dashed h-full" />
-          <div className="border-r border-white/10 border-dashed h-full" />
-          <div className="border-r border-white/10 border-dashed h-full" />
-          <div className="h-full" />
-        </div>
-      </div>
-
-      <div className="relative max-w-6xl mx-auto px-6 z-10 pt-4">
-        {/* Top Row: Brand & Status */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-start mb-12 gap-10">
-          <div className="max-w-md pt-4">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="inline-flex items-center gap-3 px-3 py-2 rounded bg-white text-black w-fit shadow-sm">
-                <div className="w-7 h-7 bg-emerald-500 rounded flex items-center justify-center shrink-0">
-                  <Terminal className="w-4 h-4 text-white" strokeWidth={3} />
-                </div>
-                <div className="flex flex-col text-left pr-2">
-                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wide leading-tight">Backed by</span>
-                  <span className="text-[14px] font-black leading-none">Open Source</span>
+      <div className="max-w-6xl mx-auto px-6 pt-12 pb-16 relative z-10">
+        
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8 pb-12">
+          <div className="max-w-md">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <div className="flex items-center gap-2 cursor-pointer" onClick={() => { window.location.hash = ''; window.scrollTo(0,0); }}>
+                <img src={logoMark} alt="Picado Labs" className="w-6 h-6 object-contain" />
+                <div className="font-extrabold text-base tracking-tight text-white">
+                  Picado<span className="text-emerald-400 font-extrabold ml-0.5">Labs</span>
                 </div>
               </div>
 
@@ -129,7 +98,7 @@ export const Footer = () => {
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-[#12141a] text-[11px] font-bold text-zinc-300 shadow-sm mt-1">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
-              All systems operational
+              41 Active Contributors
             </div>
           </div>
         </div>
@@ -144,19 +113,31 @@ export const Footer = () => {
             <a href="https://github.com/PicadoLabs/agent-bench" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">AgentBench</a>
           </div>
           <div className="flex flex-col gap-3.5">
+            <strong className="text-white text-[12px] font-bold mb-2">Packages</strong>
+            <a href="https://pypi.org/project/model-router-cli/" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors flex items-center justify-between">
+              <span>model-router-cli</span>
+              <span className="text-[10px] font-mono text-emerald-400">PyPI</span>
+            </a>
+            <a href="https://pypi.org/project/terminal-agent-cli/" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors flex items-center justify-between">
+              <span>terminal-agent-cli</span>
+              <span className="text-[10px] font-mono text-emerald-400">PyPI</span>
+            </a>
+            <a href="https://pypi.org/project/agentbench-core/" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors flex items-center justify-between">
+              <span>agentbench-core</span>
+              <span className="text-[10px] font-mono text-emerald-400">PyPI</span>
+            </a>
+            <a href="https://www.npmjs.com/package/build-with-ai" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors flex items-center justify-between">
+              <span>build-with-ai</span>
+              <span className="text-[10px] font-mono text-emerald-400">npm</span>
+            </a>
+          </div>
+          <div className="flex flex-col gap-3.5">
             <strong className="text-white text-[12px] font-bold mb-2">Developers</strong>
             <a href="#docs" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Documentation</a>
             <a href="#architecture" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Architecture</a>
             <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">GitHub</a>
             <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Issue Tracker</a>
             <a href="#quickstart" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Quickstart</a>
-          </div>
-          <div className="flex flex-col gap-3.5">
-            <strong className="text-white text-[12px] font-bold mb-2">Resources</strong>
-            <a href="#proof" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Benchmarks</a>
-            <a href="#stack" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Use Cases</a>
-            <a href="#quickstart" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Templates</a>
-            <a href="#faq" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">FAQ</a>
           </div>
           <div className="flex flex-col gap-3.5">
             <strong className="text-white text-[12px] font-bold mb-2">Company</strong>
@@ -166,7 +147,7 @@ export const Footer = () => {
               <ArrowUpRight className="w-3 h-3" />
             </a>
             <a href="mailto:picadolabs@gmail.com" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Contact</a>
-            <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Community</a>
+            <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Community (41 Devs)</a>
           </div>
         </div>
 

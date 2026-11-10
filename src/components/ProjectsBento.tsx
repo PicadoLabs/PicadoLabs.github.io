@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Code2 } from 'lucide-react';
+import { ArrowUpRight, Code2, Package } from 'lucide-react';
 
 const projects = [
   {
@@ -8,36 +8,44 @@ const projects = [
     stage: 'PLAN',
     name: 'build-with-ai',
     desc: 'Zero-API, local-first CLI that turns software ideas into phased architecture plans with persistent context memory (.buildwithai/) and 11 production templates.',
-    stack: 'Node.js (>=18) • TypeScript • CLI',
-    stats: '15+ contributors • 1.2k downloads',
-    repo: 'https://github.com/PicadoLabs/build-with-ai'
+    stack: 'npm • Node.js (>=18) • TypeScript',
+    stats: '28 contributors • npm v1.4.0',
+    repo: 'https://github.com/PicadoLabs/build-with-ai',
+    packageUrl: 'https://www.npmjs.com/package/build-with-ai',
+    packageLabel: 'npm: build-with-ai'
   },
   {
     id: '02',
     stage: 'ROUTE',
     name: 'Model Router',
     desc: 'Sub-3ms Pareto AI Traffic Control Room with triple-mode heuristics + ONNX embeddings, Thompson Sampling RL auto-tuning, and PyPI distribution.',
-    stack: 'Python (>=3.10) • FastAPI • React 18 • PyPI',
-    stats: '5+ contributors • 2.2k downloads',
-    repo: 'https://github.com/PicadoLabs/ai-model-router'
+    stack: 'PyPI • Python (>=3.10) • FastAPI • React 18',
+    stats: '11 contributors • 2.8k+ PyPI downloads',
+    repo: 'https://github.com/PicadoLabs/ai-model-router',
+    packageUrl: 'https://pypi.org/project/model-router-cli/',
+    packageLabel: 'PyPI: model-router-cli'
   },
   {
     id: '03',
     stage: 'EXECUTE',
     name: 'Terminal Agent',
     desc: 'Verify-first autonomous coding agent with independent test verifier, 12 core tools, dual sandboxing (psutil/Docker), and instant checkpoint rollback.',
-    stack: 'Python (>=3.10) • Typer • psutil • Docker',
-    stats: '2+ contributors • 440+ downloads',
-    repo: 'https://github.com/PicadoLabs/terminal-agent'
+    stack: 'PyPI • Python (>=3.10) • Typer • Docker',
+    stats: '3 contributors • 1.0k+ PyPI downloads',
+    repo: 'https://github.com/PicadoLabs/terminal-agent',
+    packageUrl: 'https://pypi.org/project/terminal-agent-cli/',
+    packageLabel: 'PyPI: terminal-agent-cli'
   },
   {
     id: '04',
     stage: 'EVALUATE',
     name: 'AgentBench',
     desc: 'Provider-agnostic benchmark platform with instant GitHub PR ingestion into reproducible tasks, local Ollama mode ($0 cost), and 5D composite scoring.',
-    stack: 'Python (>=3.10) • Node.js (>=18) • Pytest',
-    stats: '3+ contributors',
-    repo: 'https://github.com/PicadoLabs/agent-bench'
+    stack: 'PyPI • Python (>=3.10) • Node.js • Pytest',
+    stats: '4 contributors • 520+ PyPI downloads',
+    repo: 'https://github.com/PicadoLabs/agent-bench',
+    packageUrl: 'https://pypi.org/project/agentbench-core/',
+    packageLabel: 'PyPI: agentbench-core'
   }
 ];
 
@@ -117,13 +125,13 @@ export const ProjectsBento = () => {
                 </div>
                 
                 <div className="flex items-center justify-between text-xs font-semibold">
-                  <a href={proj.repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-600 hover:text-emerald-600 transition-colors">
-                    <Code2 className="w-3.5 h-3.5 text-zinc-400 group-hover:text-emerald-500" />
-                    <span>Repository</span>
+                  <a href={proj.packageUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 transition-colors">
+                    <Package className="w-3.5 h-3.5" />
+                    <span>Package</span>
                   </a>
-                  <a href={`${proj.repo}/issues`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-700 transition-colors">
-                    <span>Issues</span>
-                    <ArrowUpRight className="w-3 h-3" />
+                  <a href={proj.repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-800 transition-colors">
+                    <Code2 className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>GitHub</span>
                   </a>
                 </div>
               </div>
