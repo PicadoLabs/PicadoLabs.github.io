@@ -8,7 +8,7 @@ export const Snapshot = () => {
       link: 'https://github.com/PicadoLabs/build-with-ai',
       stage: 'Plan',
       problem: 'Developers face blank canvas paralysis, context drift, and broken code when asking AI to build whole applications.',
-      edge: 'Zero-API, local-first CLI with 11 production templates and persistent .buildwithai/ context injection (28 contributors • npm v1.4.0).'
+      edge: 'Zero-API, local-first CLI with 11 production templates and persistent .buildwithai/ context injection (31 contributors • 1.4k downloads • npm v1.4.0).'
     },
     {
       project: 'AI Model Router',

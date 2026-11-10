@@ -9,7 +9,7 @@ const projects = [
     name: 'build-with-ai',
     desc: 'Zero-API, local-first CLI that turns software ideas into phased architecture plans with persistent context memory (.buildwithai/) and 11 production templates.',
     stack: 'npm • Node.js (>=18) • TypeScript',
-    stats: '28 contributors • npm v1.4.0',
+    stats: '31 contributors • 1.4k downloads',
     repo: 'https://github.com/PicadoLabs/build-with-ai',
     packageUrl: 'https://www.npmjs.com/package/build-with-ai',
     packageLabel: 'npm: build-with-ai'

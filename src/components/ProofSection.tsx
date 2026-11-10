@@ -17,12 +17,12 @@ export const ProofSection = () => {
           {/* Real Metrics Grid */}
           <div className="grid grid-cols-2 gap-4 p-5 bg-zinc-50 rounded-2xl border border-zinc-200 shadow-sm">
             <div>
-              <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">41</div>
+              <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">44+</div>
               <div className="text-[12px] text-zinc-500 font-medium mt-0.5">Active Contributors</div>
             </div>
             <div>
-              <div className="text-2xl font-black text-emerald-600 font-mono tracking-tight">4.4k+</div>
-              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">PyPI Downloads</div>
+              <div className="text-2xl font-black text-emerald-600 font-mono tracking-tight">5.8k+</div>
+              <div className="text-[12px] text-zinc-500 font-medium mt-0.5">Total Downloads</div>
             </div>
             <div className="pt-3 border-t border-zinc-200/60">
               <div className="text-2xl font-black text-zinc-900 font-mono tracking-tight">4</div>

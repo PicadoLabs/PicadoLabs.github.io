@@ -98,7 +98,7 @@ export const Footer = () => {
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-[#12141a] text-[11px] font-bold text-zinc-300 shadow-sm mt-1">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
-              41 Active Contributors
+              44 Active Contributors
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ export const Footer = () => {
               <ArrowUpRight className="w-3 h-3" />
             </a>
             <a href="mailto:picadolabs@gmail.com" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Contact</a>
-            <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Community (41 Devs)</a>
+            <a href="https://github.com/PicadoLabs" target="_blank" rel="noopener noreferrer" className="text-[12px] font-semibold text-zinc-400 hover:text-white transition-colors">Community (44 Devs)</a>
           </div>
         </div>
 

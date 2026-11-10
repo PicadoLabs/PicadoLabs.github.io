@@ -185,7 +185,7 @@ export const DocsView = () => {
               <div>The Picado Edge</div>
             </div>
             {[
-              { project: 'build-with-ai', link: 'https://github.com/PicadoLabs/build-with-ai', stage: 'Plan', problem: 'Developers face blank canvas paralysis, context drift, and broken code when asking AI to build whole applications.', edge: 'Zero-API, local-first CLI with 11 production templates and persistent .buildwithai/ context injection (28 contributors • npm v1.4.0).' },
+              { project: 'build-with-ai', link: 'https://github.com/PicadoLabs/build-with-ai', stage: 'Plan', problem: 'Developers face blank canvas paralysis, context drift, and broken code when asking AI to build whole applications.', edge: 'Zero-API, local-first CLI with 11 production templates and persistent .buildwithai/ context injection (31 contributors • 1.4k downloads • npm v1.4.0).' },
               { project: 'AI Model Router', link: 'https://github.com/PicadoLabs/ai-model-router', stage: 'Route', problem: 'Companies face ballooning API costs, rate limits, and latency spikes across models without explainable routing logic.', edge: 'Sub-3ms Pareto AI Traffic Control Room UI with triple-mode analysis, Thompson Sampling RL, and PyPI distribution (11 contributors • 2.8k+ PyPI downloads • model-router-cli v1.2.0).' },
               { project: 'Terminal Agent', link: 'https://github.com/PicadoLabs/terminal-agent', stage: 'Execute', problem: 'Autonomous coding agents make sweeping unverified changes, hallucinate task success, and break repository builds.', edge: 'Verify-first sandboxing (psutil/Docker), 12 core tools, 12-category self-healing recovery, and instant checkpoint rollback (3 contributors • 1.0k+ PyPI downloads • terminal-agent-cli v0.1.1).' },
               { project: 'AgentBench', link: 'https://github.com/PicadoLabs/agent-bench', stage: 'Evaluate', problem: 'Traditional LLM benchmarks test isolated toy functions, while evaluating multi-turn agents is complex and provider-locked.', edge: 'Instant GitHub PR Ingestion into reproducible tasks, 12 polyglot benchmarks, local Ollama mode ($0 cost), and 5D composite scoring (4 contributors • 520+ PyPI downloads • agentbench-core v1.0.0).' }
@@ -209,7 +209,7 @@ export const DocsView = () => {
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">build-with-ai</h2>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              28 contributors • npm v1.4.0
+              31 contributors • 1.4k downloads
             </span>
             <a href="https://github.com/PicadoLabs/build-with-ai" target="_blank" rel="noopener noreferrer" className="ml-auto text-[12px] font-semibold text-zinc-400 hover:text-emerald-600 flex items-center gap-1 transition-colors"><ExternalLink className="w-3.5 h-3.5" /> GitHub</a>
           </div>
@@ -219,7 +219,7 @@ export const DocsView = () => {
           <div className="border border-zinc-200 rounded-xl overflow-hidden mb-6">
             <InfoRow label="Package" value="build-with-ai (npm v1.4.0)" link="https://www.npmjs.com/package/build-with-ai" />
             <div className="border-t border-zinc-100"><InfoRow label="Tech Stack" value="Node.js (>=18), TypeScript, npx" /></div>
-            <div className="border-t border-zinc-100"><InfoRow label="Community" value="28 contributors • 26 forks" /></div>
+            <div className="border-t border-zinc-100"><InfoRow label="Community" value="31 contributors • 1.4k downloads • 26 forks" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Cost" value="$0 — Zero API keys required (100% Local)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Templates" value="11 production templates (SaaS MVP, Full-Stack, REST API, FastAPI, Mobile, Flutter, Electron, Chrome Ext, AI Agent, Multi-Agent, Discord Bot)" /></div>
             <div className="border-t border-zinc-100"><InfoRow label="Storage" value="Branch-scoped .buildwithai/ memory + automated documentation export" /></div>
